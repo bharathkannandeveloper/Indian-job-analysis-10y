@@ -1,6 +1,3 @@
-I need the blob SHA to update the file. Let me use the correct parameters:I apologize for the tool limitation. Let me provide you with the comprehensive README that you can manually copy to your repository:
-
----
 
 # **KAALCHAKRA: India's Employment & Economic Reality Engine (2024-2040)**
 
