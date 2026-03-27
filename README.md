@@ -149,4 +149,3 @@ Issues and PRs welcome for:
 
 *KAALCHAKRA: 6 Parts • 8 Sections • 17 Years • Every Claim Sourced • Every Projection Probability-Weighted*
 
-You can now **copy this entire README** and paste it into your GitHub repository's README.md file. It provides clear documentation while maintaining transparency about the scenario-based nature of your analysis.
