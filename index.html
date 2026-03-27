@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAALCHAKRA — India's Employment & Economic Reality Engine 2024-2040</title>
+<style>
+:root {
+  --void: #06060b;
+  --abyss: #0c0c14;
+  --deep: #12121d;
+  --surface: #1a1a28;
+  --elevated: #222235;
+  --border-subtle: #2a2a40;
+  --border-active: #3a3a55;
+  --text-bright: #eaeaf2;
+  --text-primary: #c8c8d8;
+  --text-muted: #8888a0;
+  --text-dim: #555568;
+  --blood: #dc2626;
+  --blood-glow: rgba(220,38,38,0.15);
+  --ember: #ea580c;
+  --ember-glow: rgba(234,88,12,0.12);
+  --gold: #d97706;
+  --gold-glow: rgba(217,119,6,0.12);
+  --acid: #16a34a;
+  --acid-glow: rgba(22,163,74,0.12);
+  --ice: #0ea5e9;
+  --ice-glow: rgba(14,165,233,0.12);
+  --violet: #8b5cf6;
+  --violet-glow: rgba(139,92,246,0.12);
+  --cyan: #06b6d4;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--void);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.75;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--void); }
+::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-active); }
+
+/* ========== HERO ========== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 20%, rgba(220,38,38,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(14,165,233,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(139,92,246,0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 100px, rgba(255,255,255,0.006) 100px, rgba(255,255,255,0.006) 101px),
+    repeating-linear-gradient(90deg, transparent, transparent 100px, rgba(255,255,255,0.006) 100px, rgba(255,255,255,0.006) 101px);
+  pointer-events: none;
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 900px; }
+
+.roles-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-bottom: 2.5rem;
+}
+
+.role-chip {
+  padding: 0.22rem 0.65rem;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  font-size: 0.58rem;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.pulse-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0.4rem 1.4rem;
+  border: 1px solid var(--blood);
+  border-radius: 24px;
+  font-size: 0.68rem;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--blood);
+  margin-bottom: 2.5rem;
+  animation: pulse-ring 2.5s ease-in-out infinite;
+}
+
+.pulse-badge::before {
+  content: '';
+  width: 7px; height: 7px;
+  background: var(--blood);
+  border-radius: 50%;
+  animation: blink 1.4s infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { box-shadow: 0 0 6px rgba(220,38,38,0.2); }
+  50% { box-shadow: 0 0 22px rgba(220,38,38,0.45); }
+}
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.15;} }
+
+.hero-title {
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 900;
+  letter-spacing: -4px;
+  line-height: 0.95;
+  margin-bottom: 1.2rem;
+  background: linear-gradient(135deg, var(--blood) 0%, var(--ember) 35%, var(--gold) 65%, var(--acid) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.05rem, 2.5vw, 1.45rem);
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.hero-tagline {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  margin-bottom: 3rem;
+  letter-spacing: 0.3px;
+}
+
+/* ========== STAT STRIP ========== */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 1px;
+  background: var(--border-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 3rem;
+  width: 100%;
+  max-width: 850px;
+}
+
+.ss-cell {
+  background: var(--deep);
+  padding: 1.1rem 0.8rem;
+  text-align: center;
+}
+
+.ss-val {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+}
+
+.ss-lbl {
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  margin-top: 0.25rem;
+}
+
+.ss-src {
+  font-size: 0.6rem;
+  color: rgba(136,136,160,0.5);
+  margin-top: 0.15rem;
+}
+
+/* ========== DISCLOSURE ========== */
+.disclosure {
+  max-width: 750px;
+  padding: 1.3rem 1.8rem;
+  background: var(--blood-glow);
+  border: 1px solid rgba(220,38,38,0.2);
+  border-radius: 8px;
+  text-align: left;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 3rem;
+}
+
+.disclosure strong { color: var(--blood); }
+
+/* ========== SCROLL CTA ========== */
+.scroll-cta {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: color 0.3s;
+  animation: bob 2s ease-in-out infinite;
+}
+
+.scroll-cta:hover { color: var(--ice); }
+
+@keyframes bob {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+/* ========== PARTS SECTION ========== */
+.parts-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+}
+
+.parts-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.parts-eyebrow {
+  font-size: 0.62rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--blood);
+  margin-bottom: 0.5rem;
+}
+
+.parts-title {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--text-bright);
+  margin-bottom: 0.5rem;
+}
+
+.parts-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ========== PART CARDS ========== */
+.parts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.part-card {
+  background: var(--deep);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.part-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  transition: height 0.4s;
+}
+
+.part-card:hover {
+  border-color: var(--border-active);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+
+.part-card:hover::before { height: 4px; }
+
+.part-card[data-color="blood"]::before { background: var(--blood); }
+.part-card[data-color="ember"]::before { background: var(--ember); }
+.part-card[data-color="gold"]::before { background: var(--gold); }
+.part-card[data-color="ice"]::before { background: var(--ice); }
+.part-card[data-color="violet"]::before { background: var(--violet); }
+.part-card[data-color="acid"]::before { background: var(--acid); }
+
+.pc-top {
+  padding: 1.8rem 1.8rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.pc-number {
+  font-size: 2.8rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -2px;
+  flex-shrink: 0;
+}
+
+.pc-meta { flex: 1; }
+
+.pc-eyebrow {
+  font-size: 0.58rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.3rem;
+}
+
+.pc-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-bright);
+  line-height: 1.35;
+  margin-bottom: 0.3rem;
+}
+
+.pc-body {
+  padding: 0.8rem 1.8rem 1.5rem;
+  flex: 1;
+}
+
+.pc-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.pc-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1.2rem;
+}
+
+.pc-tag {
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.04);
+  color: var(--text-dim);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.pc-bottom {
+  padding: 1rem 1.8rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pc-stats {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.pc-stat {
+  text-align: center;
+}
+
+.pc-stat-val {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-bright);
+}
+
+.pc-stat-lbl {
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+}
+
+.pc-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--text-dim);
+  transition: all 0.3s;
+}
+
+.part-card:hover .pc-arrow {
+  background: rgba(14,165,233,0.1);
+  border-color: var(--ice);
+  color: var(--ice);
+}
+
+/* ========== PROBABILITY STRIP ========== */
+.prob-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem;
+}
+
+.prob-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.prob-card {
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border: 1px solid;
+  transition: transform 0.3s;
+}
+
+.prob-card:hover { transform: translateY(-3px); }
+
+.prob-a { background: rgba(22,163,74,0.05); border-color: rgba(22,163,74,0.25); }
+.prob-b { background: rgba(217,119,6,0.05); border-color: rgba(217,119,6,0.25); }
+.prob-c { background: rgba(220,38,38,0.05); border-color: rgba(220,38,38,0.25); }
+
+.prob-pct {
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.prob-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-bright);
+  margin-bottom: 0.4rem;
+}
+
+.prob-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* ========== SOURCES FOOTER ========== */
+.sources-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.sources-title {
+  font-size: 0.65rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+
+.sources-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.sources-list span { display: block; }
+
+/* ========== FOOTER ========== */
+.site-footer {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+  color: var(--text-dim);
+  font-size: 0.68rem;
+}
+
+.site-footer .blood { color: var(--blood); }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .parts-grid { grid-template-columns: 1fr; }
+  .prob-grid { grid-template-columns: 1fr; }
+  .stat-strip { grid-template-columns: repeat(3, 1fr); }
+  .hero-title { letter-spacing: -2px; }
+  .pc-number { font-size: 2rem; }
+  .pc-top { padding: 1.3rem 1.3rem 0; }
+  .pc-body { padding: 0.6rem 1.3rem 1.2rem; }
+  .pc-bottom { padding: 0.8rem 1.3rem; }
+}
+
+@media (max-width: 480px) {
+  .stat-strip { grid-template-columns: repeat(2, 1fr); }
+  .roles-row { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ████████████████████████████████ HERO ████████████████████████████████ -->
+<section class="hero">
+  <div class="hero-content">
+
+    <div class="roles-row">
+      <span class="role-chip">Macro Economist</span>
+      <span class="role-chip">AI &amp; Automation</span>
+      <span class="role-chip">Labour Strategist</span>
+      <span class="role-chip">Industrial Policy</span>
+      <span class="role-chip">Education &amp; Skills</span>
+      <span class="role-chip">Urban Development</span>
+      <span class="role-chip">Behavioural Econ</span>
+      <span class="role-chip">Robotics &amp; Future of Work</span>
+      <span class="role-chip">Geopolitical Trade</span>
+      <span class="role-chip">Demographics</span>
+      <span class="role-chip">Social Policy</span>
+      <span class="role-chip">Startup Ecology</span>
+    </div>
+
+    <div class="pulse-badge">ANALYTICAL ENGINE - Analysed by rbkannan</div>
+
+    <h1 class="hero-title">KAALCHAKRA</h1>
+    <p class="hero-subtitle">India's Employment &amp; Economic Reality Engine</p>
+    <p class="hero-tagline">Forensic Decade Analysis: 2024 to 2040 &mdash; 6 Parts, 8 Sections, 17 Years, Every Number Sourced</p>
+
+    <div class="stat-strip">
+      <div class="ss-cell">
+        <div class="ss-val" style="color:var(--blood)">1.2B</div>
+        <div class="ss-lbl">Below $10/day</div>
+        <div class="ss-src">Pew Research</div>
+      </div>
+      <div class="ss-cell">
+        <div class="ss-val" style="color:var(--ember)">58%</div>
+        <div class="ss-lbl">Income &rarr; Top 10%</div>
+        <div class="ss-src">World Inequality 2026</div>
+      </div>
+      <div class="ss-cell">
+        <div class="ss-val" style="color:var(--gold)">66M</div>
+        <div class="ss-lbl">True Middle Class</div>
+        <div class="ss-src">Not 300M. 66M.</div>
+      </div>
+      <div class="ss-cell">
+        <div class="ss-val" style="color:var(--acid)">$100K</div>
+        <div class="ss-lbl">H-1B Fee (2025)</div>
+        <div class="ss-src">Migration: CLOSED</div>
+      </div>
+      <div class="ss-cell">
+        <div class="ss-val" style="color:var(--ice)">15-20L</div>
+        <div class="ss-lbl">IT Jobs at Risk</div>
+        <div class="ss-src">NITI Aayog Official</div>
+      </div>
+    </div>
+
+    <div class="disclosure">
+      <strong>KAALCHAKRA DISCLOSURE:</strong> This is analytical intelligence built on PLFS 2025, World Inequality Report 2026, Oxfam India, Pew Research, Azim Premji University SWI 2026, NITI Aayog AI Report, CMIE, RBI, ILO, and World Bank data as of Q1 2026. Projections carry probability, not certainty. Both positive and negative trajectories are presented with honest probability weights. The goal is clarity and actionability, not alarm or comfort.
+    </div>
+
+    <div class="scroll-cta" onclick="document.getElementById('parts').scrollIntoView({behavior:'smooth'})">
+      &#9660;&nbsp; BEGIN ANALYSIS &nbsp;&#9660;
+    </div>
+
+  </div>
+</section>
+
+<!-- ████████████████████████████████ PARTS ████████████████████████████████ -->
+<section class="parts-section" id="parts">
+
+  <div class="parts-header">
+    <div class="parts-eyebrow">The Complete Analysis</div>
+    <h2 class="parts-title">6 Parts. 8 Sections. Every Chain Traced.</h2>
+    <p class="parts-desc">Each part is a standalone deep-dive. Read sequentially for the full picture, or jump to the section that matters to you.</p>
+  </div>
+
+  <div class="parts-grid">
+
+    <!-- PART 1 -->
+    <a class="part-card" href="part1.html" data-color="blood">
+      <div class="pc-top">
+        <div class="pc-number" style="color:var(--blood)">01</div>
+        <div class="pc-meta">
+          <div class="pc-eyebrow">Section 0 &mdash; Foundation</div>
+          <div class="pc-title">Ground Truth: The Brutal Baseline</div>
+        </div>
+      </div>
+      <div class="pc-body">
+        <p class="pc-desc">Before projecting anything forward: What is ACTUALLY true about India's employment in 2024? The foundational lie about India's middle class (66M, not 300M). True unemployment at 23-28%. Informal economy as demand destroyer. Immigration doors CLOSED. The K-shaped death spiral mathematically proven.</p>
+        <div class="pc-topics">
+          <span class="pc-tag">66M Middle Class</span>
+          <span class="pc-tag">23-28% Real Unemployment</span>
+          <span class="pc-tag">Immigration Wall</span>
+          <span class="pc-tag">K-Shape = Death Spiral</span>
+          <span class="pc-tag">Exam Warriors</span>
+          <span class="pc-tag">Chain Reaction Map</span>
+        </div>
+      </div>
+      <div class="pc-bottom">
+        <div class="pc-stats">
+          <div class="pc-stat"><div class="pc-stat-val">7</div><div class="pc-stat-lbl">Sub-Sections</div></div>
+          <div class="pc-stat"><div class="pc-stat-val">12+</div><div class="pc-stat-lbl">Data Tables</div></div>
+          <div class="pc-stat"><div class="pc-stat-val">3</div><div class="pc-stat-lbl">Chain Maps</div></div>
+        </div>
+        <div class="pc-arrow">&rarr;</div>
+      </div>
+    </a>
+
+    <!-- PART 2 -->
+    <a class="part-card" href="part2.html" data-color="ember">
+      <div class="pc-top">
+        <div class="pc-number" style="color:var(--ember)">02</div>
+        <div class="pc-meta">
+          <div class="pc-eyebrow">Section 1 &mdash; Near Term</div>
+          <div class="pc-title">Year-by-Year: 2024 to 2030</div>
+        </div>
+      </div>
+      <div class="pc-body">
+        <p class="pc-desc">Each year dissected: macro backdrop, sector movement, AI displacement, street-level reality. 2025's "Goldilocks" paradox with REAL data (GDP 7.4%, repo 5.25%, US tariffs 50%). The 2027 IT Reckoning. The 2029 Election Pressure Cooker. The 2030 Verdict Year.</p>
+        <div class="pc-topics">
+          <span class="pc-tag">GDP 7.4% Reality</span>
+          <span class="pc-tag">US Tariffs 50%</span>
+          <span class="pc-tag">IT Reckoning 2027</span>
+          <span class="pc-tag">Two Economies Split</span>
+          <span class="pc-tag">Sector Scorecards</span>
+          <span class="pc-tag">Cost of Living Tables</span>
+        </div>
+      </div>
+      <div class="pc-bottom">
+        <div class="pc-stats">
+          <div class="pc-stat"><div class="pc-stat-val">7</div><div class="pc-stat-lbl">Years Covered</div></div>
+          <div class="pc-stat"><div class="pc-stat-val">42+</div><div class="pc-stat-lbl">Sector Forecasts</div></div>
+          <div class="pc-stat"><div class="pc-stat-val">7</div><div class="pc-stat-lbl">Scorecards</div></div>
+        </div>
+        <div class="pc-arrow">&rarr;</div>
+      </div>
+    </a>
+
+    <!-- PART 3 -->
+    <a class="part-card" href="part3.html" data-color="gold">
+      <div class="pc-top">
+        <div class="pc-number" style="color:var(--gold)">03</div>
+        <div class="pc-meta">
+          <div class="pc-eyebrow">Section 1 Continued &mdash; Long Term</div>
+          <div class="pc-title">Year-by-Year: 2031 to 2040</div>
+        </div>
+      </div>
+      <div class="pc-body">
+        <p class="pc-desc">The Adaptation Decade. Green energy scales. AI-skilled divide hardens permanently. Middle-class career anxiety crisis hits. Robotics reaches physical work. 2035: LAST YEAR to correct before demographic dividend expires. The Three Indias crystallize in 2040.</p>
+        <div class="pc-topics">
+          <span class="pc-tag">Demographic Dividend Expiry</span>
+          <span class="pc-tag">Robotics in Physical Work</span>
+          <span class="pc-tag">Career Anxiety Crisis</span>
+          <span class="pc-tag">Three 2040 Scenarios</span>
+          <span class="pc-tag">UBI Decision Point</span>
+          <span class="pc-tag">Full Decade Table</span>
+        </div>
+      </div>
+      <div class="pc-bottom">
+        <div class="pc-stats">
+          <div class="pc-stat"><div class="pc-stat-val">10</div><div class="pc-stat-lbl">Years Covered</div></div>
+          <div class="pc-stat"><div class="pc-stat-val">3</div><div class="pc-stat-lbl">2040 Scenarios</div></div>
+          <div class="pc-stat"><div class="pc-stat-val">15-40%</div><div class="pc-stat-lbl">Confidence Range</div></div>
+        </div>
+        <div class="pc-arrow">&rarr;</div>
+      </div>
+    </a>
+
+    <!-- PART 4 -->
+    <a class="part-card" href="part4.html" data-color="ice">
+      <div class="pc-top">
+        <div class="pc-number" style="color:var(--ice)">04</div>
+        <div class="pc-meta">
+          <div class="pc-eyebrow">Sections 2 &amp; 3 &mdash; Deep Dives</div>
+          <div class="pc-title">AI Tipping Point + Sector Forensics</div>
+        </div>
+      </div>
+      <div class="pc-body">
+        <p class="pc-desc">NITI Aayog confirms 15-20L IT job losses. Tech openings down 60% from peak. Labor arbitrage model: DEAD. Phase-by-phase displacement timeline. Sector arcs: IT (structural decline), Manufacturing (race against robots), Agriculture (climate bomb), Green Energy (THE opportunity), Healthcare (criminally under-invested).</p>
+        <div class="pc-topics">
+          <span class="pc-tag">NITI Aayog AI Report</span>
+          <span class="pc-tag">15-20L IT Jobs Lost</span>
+          <span class="pc-tag">Cost Arbitrage Dead</span>
+          <span class="pc-tag">GCC Only Bright Spot</span>
+          <span class="pc-tag">Green = 1.68Cr Jobs</span>
+          <span class="pc-tag">Healthcare Gap 60L</span>
+          <span class="pc-tag">Gig Saturation</span>
+        </div>
+      </div>
+      <div class="pc-bottom">
+        <div class="pc-stats">
+          <div class="pc-stat"><div class="pc-stat-val">7</div><div class="pc-stat-lbl">Sectors Dissected</div></div>
+          <div class="pc-stat"><div class="pc-stat-val">4</div><div class="pc-stat-lbl">AI Phases</div></div>
+          <div class="pc-stat"><div class="pc-stat-val">25+</div><div class="pc-stat-lbl">Data Tables</div></div>
+        </div>
+        <div class="pc-arrow">&rarr;</div>
+      </div>
+    </a>
+
+    <!-- PART 5 -->
+    <a class="part-card" href="part5.html" data-color="violet">
+      <div class="pc-top">
+        <div class="pc-number" style="color:var(--violet)">05</div>
+        <div class="pc-meta">
+          <div class="pc-eyebrow">Sections 4 &amp; 5 &mdash; Mechanics</div>
+          <div class="pc-title">Startups + Money &amp; Consumption</div>
+        </div>
+      </div>
+      <div class="pc-body">
+        <p class="pc-desc">Startup reality: 200K registered, 8-15K matter. VC optimizes for valuation, not jobs. Unicorn paradox: $400B = 5L jobs. Household savings at 5% GDP (multi-decade low). Consumption collapse chain mapped. Can economy run without mass employment? The fourth rung doesn't exist.</p>
+        <div class="pc-topics">
+          <span class="pc-tag">$10.5B Funding 2025</span>
+          <span class="pc-tag">Seed -39%</span>
+          <span class="pc-tag">Unicorn ≠ Jobs</span>
+          <span class="pc-tag">Savings Crisis 5%</span>
+          <span class="pc-tag">Debt 41% GDP</span>
+          <span class="pc-tag">UBI Math</span>
+          <span class="pc-tag">Money Rotation Maps</span>
+        </div>
+      </div>
+      <div class="pc-bottom">
+        <div class="pc-stats">
+          <div class="pc-stat"><div class="pc-stat-val">4</div><div class="pc-stat-lbl">Money Scenarios</div></div>
+          <div class="pc-stat"><div class="pc-stat-val">12+</div><div class="pc-stat-lbl">Data Tables</div></div>
+          <div class="pc-stat"><div class="pc-stat-val">5</div><div class="pc-stat-lbl">Chain Reactions</div></div>
+        </div>
+        <div class="pc-arrow">&rarr;</div>
+      </div>
+    </a>
+
+    <!-- PART 6 -->
+    <a class="part-card" href="part6.html" data-color="acid">
+      <div class="pc-top">
+        <div class="pc-number" style="color:var(--acid)">06</div>
+        <div class="pc-meta">
+          <div class="pc-eyebrow">Sections 6, 7 &amp; 8 &mdash; Final</div>
+          <div class="pc-title">Government + Survival + Synthesis</div>
+        </div>
+      </div>
+      <div class="pc-body">
+        <p class="pc-desc">Policy arsenal graded honestly (MGNREGS "nearly negligible" per SBI). Political economy of data manipulation. State-level divergence. Survival strategies. The full 2024-2040 heat map. THE 10 QUESTIONS NOBODY IS ASKING. Final probability verdict.</p>
+        <div class="pc-topics">
+          <span class="pc-tag">VB-G RAM G Act</span>
+          <span class="pc-tag">Policy Grades</span>
+          <span class="pc-tag">Caste + AI</span>
+          <span class="pc-tag">State Divergence</span>
+          <span class="pc-tag">Exam Warriors</span>
+          <span class="pc-tag">10 Unasked Questions</span>
+          <span class="pc-tag">Final Verdict</span>
+        </div>
+      </div>
+      <div class="pc-bottom">
+        <div class="pc-stats">
+          <div class="pc-stat"><div class="pc-stat-val">10</div><div class="pc-stat-lbl">Unasked Questions</div></div>
+          <div class="pc-stat"><div class="pc-stat-val">3</div><div class="pc-stat-lbl">Scenario Verdicts</div></div>
+          <div class="pc-stat"><div class="pc-stat-val">17yr</div><div class="pc-stat-lbl">Heat Map</div></div>
+        </div>
+        <div class="pc-arrow">&rarr;</div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- ████████████████████████████████ PROBABILITY VERDICT ████████████████████████████████ -->
+<section class="prob-section">
+  <div class="parts-header">
+    <div class="parts-eyebrow">The Probability Verdict</div>
+    <h2 class="parts-title">Three Possible 2040 Indias</h2>
+    <p class="parts-desc">Based on compound probability analysis of 50+ variables across 16 years.</p>
+  </div>
+
+  <div class="prob-grid">
+    <div class="prob-card prob-a">
+      <div class="prob-pct" style="color:var(--acid)">28%</div>
+      <div class="prob-name">Leapfrog India</div>
+      <div class="prob-desc">AI transition navigated. Manufacturing scaled. Green energy booming. Education reformed. GDP $13-15T. Real wages growing. 45% in formal work. Inequality declining. The India 1.4B people deserve.</div>
+    </div>
+    <div class="prob-card prob-b">
+      <div class="prob-pct" style="color:var(--gold)">52%</div>
+      <div class="prob-name">Muddling India</div>
+      <div class="prob-desc">Managed but not thriving. Two-speed economy permanent. Top 20% first-world, bottom 60% gig + transfers. GDP $9-11T. Inequality entrenched. Functional but unfulfilling. The most likely path.</div>
+    </div>
+    <div class="prob-card prob-c">
+      <div class="prob-pct" style="color:var(--blood)">20%</div>
+      <div class="prob-name">Fracture India</div>
+      <div class="prob-desc">Multiple failures cascade. IT collapsed, manufacturing stalled, climate shocks, fiscal exhaustion. Real unemployment 30%+. Social contract under stress. Not collapse, but permanent middle-income trap.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ████████████████████████████████ SOURCES ████████████████████████████████ -->
+<section class="sources-section">
+  <div class="sources-title">Primary Data Sources (Q1 2026)</div>
+  <div class="sources-list">
+    <span>PLFS Annual Report 2025 (MoSPI, 27 Mar 2026)</span>
+    <span>World Inequality Report 2026 (Chancel, Piketty et al.)</span>
+    <span>Oxfam India: Survival of the Richest</span>
+    <span>Pew Research Center: Global Income Analysis</span>
+    <span>Azim Premji University: State of Working India 2026</span>
+    <span>NITI Aayog: Roadmap for Job Creation in AI Economy</span>
+    <span>RBI KLEMS Database + Monetary Policy Dec 2025</span>
+    <span>NSO GDP Advance Estimates FY26</span>
+    <span>Union Budget 2026-27 (PIB)</span>
+    <span>Xpheno Active Tech Jobs Outlook Jan 2026</span>
+    <span>Tracxn India Tech Funding 9M 2025</span>
+    <span>NASSCOM Strategic Review + IT Employment Data</span>
+    <span>SBI Research: MGNREGS / VB-G RAM G Impact</span>
+    <span>CAG Maharashtra: MGNREGS Audit 2019-24</span>
+    <span>US Immigration: H-1B Proclamation Sep 2025</span>
+    <span>IRCC Canada: Immigration Levels Plan 2026-28</span>
+    <span>UK Home Office: Immigration White Paper Mar 2025</span>
+    <span>ILO Global Employment Trends / Future of Work</span>
+    <span>World Bank: India Development Update</span>
+    <span>Deloitte / S&P / SBI FY27 GDP Forecasts</span>
+  </div>
+</section>
+
+<!-- ████████████████████████████████ FOOTER ████████████████████████████████ -->
+<footer class="site-footer">
+  <p>KAALCHAKRA Employment &amp; Economic Reality Engine | Base Data: Q1 2026</p>
+  <p style="margin-top:0.4rem;">6 Parts &middot; 8 Sections &middot; 17 Years &middot; Every Claim Numbered &middot; Every Projection Probability-Weighted</p>
+  <p style="margin-top:0.8rem;" class="blood">DISCLOSURE: Analytical intelligence only. Probabilities, not certainties. This is not financial, career, or investment advice.</p>
+  <p style="margin-top:0.8rem;">&copy; 2026 KAALCHAKRA Analytical Engine</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAALCHAKRA Part 6 — Government + Survival + Synthesis + The 10 Unasked Questions</title>
+<style>
+:root {
+  --void:#06060b;--abyss:#0c0c14;--deep:#12121d;--surface:#1a1a28;--border-subtle:#2a2a40;--border-active:#3a3a55;
+  --text-bright:#eaeaf2;--text-primary:#c8c8d8;--text-muted:#8888a0;--text-dim:#555568;
+  --blood:#dc2626;--blood-glow:rgba(220,38,38,0.15);--ember:#ea580c;--ember-glow:rgba(234,88,12,0.12);
+  --gold:#d97706;--gold-glow:rgba(217,119,6,0.12);--acid:#16a34a;--acid-glow:rgba(22,163,74,0.12);
+  --ice:#0ea5e9;--ice-glow:rgba(14,165,233,0.12);--violet:#8b5cf6;--violet-glow:rgba(139,92,246,0.12);--cyan:#06b6d4;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--void);color:var(--text-primary);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--void);}::-webkit-scrollbar-thumb{background:var(--border-subtle);border-radius:3px;}
+.frame{max-width:1200px;margin:0 auto;padding:3rem 1.5rem;}
+.sect-eye{font-size:0.65rem;letter-spacing:5px;text-transform:uppercase;color:var(--blood);margin-bottom:0.5rem;}
+.sect-title{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-1px;color:var(--text-bright);margin-bottom:0.5rem;}
+.sect-desc{font-size:0.95rem;color:var(--text-muted);max-width:800px;margin-bottom:3rem;}
+.card{background:var(--deep);border:1px solid var(--border-subtle);border-radius:10px;margin-bottom:2rem;overflow:hidden;}
+.card-head{padding:1.5rem 2rem;display:flex;align-items:center;gap:1rem;border-bottom:1px solid var(--border-subtle);flex-wrap:wrap;}
+.card-icon{font-size:1.5rem;}.card-title{font-size:1.2rem;font-weight:700;color:var(--text-bright);flex:1;}
+.card-badge{padding:0.2rem 0.7rem;border-radius:4px;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;}
+.badge-critical{background:var(--blood-glow);color:var(--blood);border:1px solid rgba(220,38,38,0.3);}
+.badge-structural{background:var(--ember-glow);color:var(--ember);border:1px solid rgba(234,88,12,0.3);}
+.badge-high{background:var(--gold-glow);color:var(--gold);border:1px solid rgba(217,119,6,0.3);}
+.badge-positive{background:var(--acid-glow);color:var(--acid);border:1px solid rgba(22,163,74,0.3);}
+.card-body{padding:1.5rem 2rem;}
+h3{font-size:1.1rem;font-weight:700;color:var(--ice);margin:1.8rem 0 0.7rem;padding-bottom:0.3rem;border-bottom:1px solid var(--border-subtle);}
+h4{font-size:0.95rem;font-weight:700;color:var(--text-bright);margin:1.2rem 0 0.5rem;}
+p{margin-bottom:0.7rem;font-size:0.9rem;}
+ul,ol{margin:0.5rem 0 0.8rem 1.3rem;font-size:0.88rem;color:var(--text-muted);}li{margin-bottom:0.4rem;}
+.num{color:var(--gold);font-weight:800;}.negative{color:var(--blood);font-weight:700;}.positive{color:var(--acid);font-weight:700;}.warn{color:var(--ember);font-weight:700;}
+.tbl-wrap{overflow-x:auto;margin:1rem 0;border:1px solid var(--border-subtle);border-radius:8px;}
+table{width:100%;border-collapse:collapse;font-size:0.8rem;}
+th{text-align:left;padding:0.65rem 0.9rem;background:rgba(14,165,233,0.06);color:var(--ice);font-weight:700;font-size:0.68rem;text-transform:uppercase;letter-spacing:1px;border-bottom:2px solid var(--border-subtle);white-space:nowrap;}
+td{padding:0.55rem 0.9rem;border-bottom:1px solid rgba(42,42,64,0.4);color:var(--text-muted);vertical-align:top;}
+.callout{padding:1.1rem 1.4rem;border-radius:6px;margin:1.2rem 0;font-size:0.86rem;line-height:1.72;}
+.callout-blood{background:var(--blood-glow);border-left:3px solid var(--blood);}
+.callout-ember{background:var(--ember-glow);border-left:3px solid var(--ember);}
+.callout-gold{background:var(--gold-glow);border-left:3px solid var(--gold);}
+.callout-acid{background:var(--acid-glow);border-left:3px solid var(--acid);}
+.callout-ice{background:var(--ice-glow);border-left:3px solid var(--ice);}
+.callout-street{background:var(--violet-glow);border-left:3px solid var(--violet);color:var(--violet);font-style:italic;}
+.callout strong{color:var(--text-bright);}
+.chain{background:var(--abyss);border:1px solid var(--border-subtle);border-radius:8px;padding:1.3rem 1.6rem;margin:1.2rem 0;font-family:'Cascadia Code','Fira Code','Consolas',monospace;font-size:0.72rem;line-height:2;color:var(--cyan);overflow-x:auto;white-space:pre;}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.2rem;}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;}
+.stat-block{background:var(--surface);border:1px solid var(--border-subtle);border-radius:8px;padding:1.1rem;text-align:center;}
+.stat-val{font-size:1.6rem;font-weight:900;line-height:1.2;}.stat-lbl{font-size:0.6rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-dim);margin-top:0.3rem;}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border-subtle),transparent);margin:3rem 0;}
+.q-card{background:var(--deep);border:1px solid var(--border-subtle);border-left:3px solid var(--blood);border-radius:0 8px 8px 0;padding:1.3rem 1.5rem;margin-bottom:1.2rem;}
+.q-card h4{color:var(--blood);margin-top:0;}
+.final-card{background:var(--deep);border:2px solid var(--blood);border-radius:12px;padding:2.5rem;margin-top:3rem;text-align:center;}
+.part-footer{text-align:center;padding:3rem 1.5rem;border-top:1px solid var(--border-subtle);color:var(--text-dim);font-size:0.72rem;}
+@media(max-width:768px){.g2,.g3{grid-template-columns:1fr;}.chain{font-size:0.62rem;padding:0.9rem;}.card-body{padding:1.2rem;}}
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="sect-eye">Sections 6, 7 &amp; 8 &middot; Part 6 of 6 (Final)</div>
+  <h2 class="sect-title">Government Response + Survival + Decade Synthesis</h2>
+  <p class="sect-desc">The policy arsenal. The human strategies. The unasked questions. The final probability verdict.</p>
+
+  <!-- ══════════════ SECTION 6: GOVERNMENT RESPONSE ══════════════ -->
+  <div class="card">
+    <div class="card-head">
+      <span class="card-icon">&#128736;&#65039;</span>
+      <span class="card-title">6.1 Policy Arsenal: Honest Effectiveness Assessment</span>
+      <span class="card-badge badge-structural">MIXED RECORD</span>
+    </div>
+    <div class="card-body">
+
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Policy Tool</th><th>Scale</th><th>Effectiveness</th><th>Cost-Per-Job</th><th>Key Flaw</th></tr>
+          <tr>
+            <td><strong>VB-G RAM G (ex-MGNREGS)</strong></td>
+            <td>Rs 86,000 Cr/yr (FY26). 5.78 Cr HH employed.</td>
+            <td class="warn">4/10</td>
+            <td>Rs 14,755/household. Covers ~10% of poverty-line expenditure (SBI).</td>
+            <td>SBI: "Impact on rural poverty nearly negligible." Only 8.7% of HH complete 100 days. Demand at 5-year low (15.6M in March 2026). CAG: 52% works completed, 20-30% visible on ground. Now overhauled (125 days guarantee, VB-G RAM G Act Dec 2025).</td>
+          </tr>
+          <tr>
+            <td><strong>PLI Schemes</strong></td>
+            <td>Rs 1.97L Cr across 14 sectors</td>
+            <td class="warn">5/10</td>
+            <td>Rs 13-25 lakh per formal job</td>
+            <td>Incentivizes CAPEX, not employment. 8-15L jobs vs 60L promised. Apple/Samsung assembly: real but automated facilities. Expensive per job but creates quality employment.</td>
+          </tr>
+          <tr>
+            <td><strong>Skill India Mission</strong></td>
+            <td>4+ Cr trained since inception</td>
+            <td class="negative">2/10</td>
+            <td>High (factoring in placement conversion)</td>
+            <td>Placement conversion: ~20-25%. Of those placed, 6-month retention: ~50%. Effective rate: 10-12% long-term employment. Training for jobs that AI is making obsolete faster than training cycles.</td>
+          </tr>
+          <tr>
+            <td><strong>Startup India / DPIIT</strong></td>
+            <td>200K registered, 44K in 2025 alone</td>
+            <td class="warn">5/10</td>
+            <td>Variable</td>
+            <td>Registration ≠ viability. Only ~4-6% employ 20+ people. Benefits urban, English-speaking, tech-savvy. Excludes rural India. Tier-2 expansion is positive shift.</td>
+          </tr>
+          <tr>
+            <td><strong>NEP 2020</strong></td>
+            <td>Potentially transformative</td>
+            <td>3/10 (too early)</td>
+            <td>N/A</td>
+            <td>Implementation varies wildly by state. Teacher retraining inadequate. Results: 10-15 years away. The 2024 cohort sees zero NEP benefit. The 2032 cohort might. Maybe.</td>
+          </tr>
+          <tr>
+            <td><strong>Tax Relief (Budget 2025-26)</strong></td>
+            <td>Rs 12.75L income tax rebate. GST cuts on 375 items.</td>
+            <td class="positive">6/10</td>
+            <td>Rs ~1L Cr revenue foregone</td>
+            <td>Genuine middle-class purchasing power boost. But benefits only those WITH income. Zero impact on unemployed or informal workers. Helps consumption, doesn't create jobs directly.</td>
+          </tr>
+          <tr>
+            <td><strong>Infrastructure Capex</strong></td>
+            <td>Rs 12.2L Cr (FY27 budget)</td>
+            <td class="positive">7/10</td>
+            <td>Rs 3-8 lakh per construction job</td>
+            <td>Best direct job creator in government toolkit. Highways, metros, railways employ 10-15L/year. But: construction jobs are temporary (project-based) and face robotics pressure by 2030s.</td>
+          </tr>
+        </table>
+      </div>
+
+      <h3>What India SHOULD Be Doing But Isn't</h3>
+      <ul>
+        <li><strong>Automation Impact Assessment:</strong> No requirement for companies deploying AI/automation to report employment impact. P(India implements this by 2030) = <span class="negative">12%</span>.</li>
+        <li><strong>Robot/Automation Tax:</strong> Europe debating, India not even discussing. Corporate lobby too strong. P(by 2030) = <span class="negative">8%</span>.</li>
+        <li><strong>Unemployment Insurance:</strong> India has ZERO. Even a basic 3-month unemployment benefit at Rs 5,000/month would cost ~Rs 15,000-20,000 Cr/year for formal sector. P(by 2030) = <span class="warn">20%</span>.</li>
+        <li><strong>Healthcare Worker Pipeline:</strong> 25-60L shortage. Training capacity: 10% of need. An investment of Rs 25,000-40,000 Cr would create 10-15L high-quality jobs within 5 years. P(this investment happens) = <span class="warn">25%</span>.</li>
+        <li><strong>Urban Employment Guarantee:</strong> MGNREGS (now VB-G RAM G) for cities. Piloted nowhere at scale. 25+ Cr urban workers have NO safety net. P(pilot by 2028) = <span class="warn">35%</span>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <span class="card-icon">&#127987;&#65039;</span>
+      <span class="card-title">6.2 The Political Economy: Who Benefits from the Employment Narrative?</span>
+      <span class="card-badge badge-critical">UNCOMFORTABLE</span>
+    </div>
+    <div class="card-body">
+      <h3>The Data Gap Is a Feature, Not a Bug</h3>
+      <p>Government claims: "64.33 crore employed in FY24, up from 47.5 crore in FY18." PLFS headline: "Unemployment 3.1%." CMIE estimates: 7-8%. Real (adjusted): 23-28%. The gap: <span class="negative">20-25 percentage points</span> representing <span class="negative">10-15 crore people</span>. Why does this gap persist?</p>
+      <ul>
+        <li><strong>Electoral incentive:</strong> No government wants to be the one that "caused" unemployment. Favorable definitions ensure low headline numbers regardless of reality.</li>
+        <li><strong>Market incentive:</strong> Foreign investment requires growth narrative. "3% unemployment" attracts FDI. "25% real underemployment" scares it away.</li>
+        <li><strong>Institutional incentive:</strong> PLFS methodology, once set, is hard to change without admitting previous data was misleading.</li>
+        <li><strong>Media incentive:</strong> Government is the largest advertiser. Media outlets that question employment data risk losing advertising revenue.</li>
+      </ul>
+
+      <h3>The Caste Dimension of the AI Economy</h3>
+      <p>This is the uncomfortable dimension. Access to AI economy requires: English fluency, Tier-1 education, urban networks, family economic buffer to allow risk-taking, and digital literacy from childhood. All of these correlate HEAVILY with caste and class in India. A Dalit first-generation graduate from a village in Madhya Pradesh faces: (a) education quality deficit (despite reservation, school quality in their district is lower), (b) social network deficit (no connections to GCCs or startups), (c) no financial cushion to pursue risky upskilling, (d) algorithm bias (AI hiring tools trained on historical data that reflects caste-based hiring patterns). P(AI economy ACCELERATES rather than reduces caste-based inequality) = <span class="negative">55%</span>.</p>
+
+      <h3>State-Level Divergence: Two Indias Becoming Five Indias</h3>
+      <div class="g2">
+        <div class="callout callout-acid">
+          <h4 style="color:var(--acid)">States Winning</h4>
+          <ul>
+            <li><strong>Tamil Nadu:</strong> Industrial diversification. EV hub (Ola, Hyundai). Ports. Strong education. Female LFPR above national avg. Tier-2 cities (Coimbatore, Madurai) attracting GCCs.</li>
+            <li><strong>Karnataka:</strong> Bangalore = India's tech capital. But city infrastructure at breaking point. GCCs thriving. Defense tech growing. Rural-urban divide extreme.</li>
+            <li><strong>Gujarat:</strong> Manufacturing base. GIFT City. Dholera SIR. PLI beneficiary. But low female LFPR and high informality persist.</li>
+            <li><strong>Telangana:</strong> Hyderabad absorbing corporate relocations. Pharma + IT + GCC hub. T-Hub. Tier-2 strategy working.</li>
+          </ul>
+        </div>
+        <div class="callout callout-blood">
+          <h4 style="color:var(--blood)">States Trapped</h4>
+          <ul>
+            <li><strong>Bihar:</strong> 90%+ informal. Population growth outpacing job creation. Education quality crisis. Sends most migrants (who face automation at destination). No industrial base.</li>
+            <li><strong>UP:</strong> India's most populous state. Some industrial corridors but fraction of need. 12M+ annual seekers. Exam warrior capital (Prayagraj, Lucknow).</li>
+            <li><strong>Jharkhand/Chhattisgarh:</strong> Mineral-dependent. Coal transition will hit hard. No diversification. Limited education infra.</li>
+            <li><strong>Odisha:</strong> Improving from low base but still heavily mineral/agriculture dependent. Climate-vulnerable coastline.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>By 2035, the GDP per capita gap between Tamil Nadu/Karnataka and Bihar/UP will be <span class="negative">4-6x</span>. These are effectively different countries economically. The migration pressure from BIMARU states to southern/western states will intensify, creating political friction (language, culture, sons-of-soil) that could become India's most serious internal political challenge after employment itself.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════ SECTION 7: SURVIVAL STRATEGIES ══════════════ -->
+  <div class="sect-eye">Section 7</div>
+  <h2 class="sect-title">Survival Strategies of Ordinary Indians</h2>
+
+  <div class="g2">
+    <div class="card">
+      <div class="card-head"><span class="card-icon">&#128188;</span><span class="card-title">7.1 Multi-Job Economy &amp; 7.3 The Underground Economy</span></div>
+      <div class="card-body">
+        <p><span class="num">25-30%</span> of urban workers maintain 2+ income streams. Not "hustle culture." Survival mathematics. When one income can't cover rent + EMI + food + education in any metro city, the second income isn't optional. It's the difference between dignified poverty and destitution.</p>
+        <p><strong>AI paradox for survival economy:</strong> Cheap AI tools (WhatsApp Business + UPI + free ChatGPT) enable micro-entrepreneurship. A chai seller using WhatsApp for orders, UPI for payments, and ChatGPT to write marketing messages is MORE productive than the same chai seller in 2020. The informal economy gets AI-powered before the formal economy fully digests AI. This is India's hidden resilience: the street adapts faster than the boardroom.</p>
+        <p><strong>Shadow economy:</strong> Estimated 25-30% of GDP. Absorbs 15-20 Cr workers. Cash economy, grey market, unregistered businesses. This is where employment data goes to hide. These workers don't appear in PLFS. They don't appear in tax rolls. But they feed their families. If UBI is introduced, some shadow economy workers might formalize (good), but others might reduce effort (controversial). The interaction between UBI and informal economy is the most important unresearched question in Indian economics.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><span class="card-icon">&#128165;</span><span class="card-title">7.4 Psychology of the Unemployed Middle Class</span></div>
+      <div class="card-body">
+        <p>The most politically dangerous demographic: <span class="num">3-5 crore</span> first-generation degree holders who cannot find degree-appropriate work. The ASPIRATION TRAP: family sold land, took loans, spent Rs 5-15 lakh on a degree. The degree doesn't convert to employment. The debt remains. The shame compounds.</p>
+        <p><strong>What do they do?</strong> Prepare for government exams (3-7 years). Take coaching loans. Live in shared PGs in Mukherjee Nagar, Kota, Prayagraj. Success probability: 0.5-3%. The 97-99.5% who fail don't disappear. They become: angry, disillusioned, politically available for mobilization, and prone to conspiracy thinking about why the system failed them.</p>
+        <p><strong>Historical precedent:</strong> Arab Spring 2011 (Tunisian unemployed graduate self-immolated). Sri Lanka 2022 (economic crisis + youth rage). India's scale makes any equivalent event 100x larger. P(major youth employment-related protest movement by 2030) = <span class="warn">40%</span>. We've seen precursors: Agnipath protests 2022, railway exam protests, SSC paper leak agitations. The energy is building. The pressure cooker has a weak valve.</p>
+        <div class="callout callout-street">
+          &#128172; <strong>In plain terms:</strong> A 28-year-old BA graduate in Prayagraj who has been preparing for UPSC for 5 years, living in a 6x8 room, eating Rs 50 thali twice a day, borrowing from family who already sold an acre to fund the first 3 years, who has failed prelims 4 times and passed once but didn't make the cut... this person is not a statistic. This is 50 lakh people. They are educated, aware, connected via social media, and increasingly convinced the system is rigged against them. They are right about the system being stacked. They are wrong about individual effort being the only solution. But nobody is offering them a structural alternative. That absence of alternatives is the definition of a political tinderbox.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ══════════════ SECTION 8: SYNTHESIS ══════════════ -->
+  <div class="sect-eye">Section 8</div>
+  <h2 class="sect-title">Cross-Decade Synthesis: The Final Verdict</h2>
+
+  <!-- 8.1 Full Heat Map -->
+  <div class="card">
+    <div class="card-head"><span class="card-icon">&#127777;&#65039;</span><span class="card-title">8.1 The Employment Decade Heat Map (2024-2040)</span></div>
+    <div class="card-body">
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Year</th><th>GDP%</th><th>GDP Size</th><th>Real Unemp (adj)</th><th>AI Displcmt (cumul)</th><th>Net Job/yr</th><th>Phase</th><th>Risk</th></tr>
+          <tr><td><strong>2024</strong></td><td>6.5%</td><td>$3.5T</td><td>~23%</td><td>5-8L</td><td>+55-65L</td><td>Expansion (slowing)</td><td style="color:var(--gold)">MED</td></tr>
+          <tr><td><strong>2025</strong></td><td>7.4%</td><td>$3.8T</td><td>~22%</td><td>12-20L</td><td>+50-62L</td><td>"Goldilocks" surface</td><td style="color:var(--ember)">ELEV</td></tr>
+          <tr><td><strong>2026</strong></td><td>6.6-6.9%</td><td>$4.1T</td><td>~22%</td><td>25-38L</td><td>+45-58L</td><td>Bifurcation Year</td><td style="color:var(--ember)">ELEV</td></tr>
+          <tr><td><strong>2027</strong></td><td>6.8-7.2%</td><td>$4.5T</td><td>~21%</td><td>45-65L</td><td>+40-55L</td><td>IT Reckoning</td><td style="color:var(--blood)">HIGH</td></tr>
+          <tr><td><strong>2028</strong></td><td>6.2-6.5%</td><td>$4.8T</td><td>~22%</td><td>70-95L</td><td>+35-50L</td><td>Pressure Cooker</td><td style="color:var(--blood)">HIGH</td></tr>
+          <tr><td><strong>2029</strong></td><td>5.8-6.5%</td><td>$5.1T</td><td>~23%</td><td>95-130L</td><td>+28-42L</td><td>Election Reckoning</td><td style="color:var(--blood)">CRIT</td></tr>
+          <tr><td><strong>2030</strong></td><td>6.0-7.0%</td><td>$5.5-6T</td><td>~22%</td><td>1.2-1.6Cr</td><td>+30-55L</td><td>Verdict Year</td><td style="color:var(--ember)">ELEV</td></tr>
+          <tr><td><strong>2031</strong></td><td>6.5-7.0%</td><td>$6.5-7T</td><td>~20-22%</td><td>1.5-1.9Cr</td><td>+38-52L</td><td>New Equilibrium</td><td style="color:var(--gold)">MED</td></tr>
+          <tr><td><strong>2033</strong></td><td>6.5-7.0%</td><td>$8-9T</td><td>~20-23%</td><td>2.4-2.9Cr</td><td>+35-50L</td><td>Middle-Class Anxiety</td><td style="color:var(--ember)">ELEV</td></tr>
+          <tr style="background:var(--blood-glow);"><td><strong>2035</strong></td><td>5.8-6.5%</td><td>$9-10T</td><td>~22-26%</td><td>3.5-4.2Cr</td><td>+25-40L</td><td><strong>Last Correction Year</strong></td><td style="color:var(--blood)"><strong>CRIT</strong></td></tr>
+          <tr><td><strong>2038</strong></td><td>6.8-7.5%</td><td>$11-13T</td><td>~17-23%</td><td>5.4-6.2Cr</td><td>+38-60L</td><td>New Growth Model</td><td style="color:var(--gold)">MED</td></tr>
+          <tr style="background:var(--violet-glow);"><td><strong>2040</strong></td><td>Scenario</td><td>$7-15T</td><td>15-35%</td><td>5.5-7Cr</td><td>Varies</td><td><strong>VERDICT</strong></td><td style="color:var(--violet)"><strong>UNC</strong></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8.4 THE 10 UNASKED QUESTIONS -->
+  <div class="card" style="border-color:var(--blood);">
+    <div class="card-head" style="border-color:var(--blood);">
+      <span class="card-icon">&#10067;</span>
+      <span class="card-title">8.4 The 10 Questions Nobody Is Asking But Must Be</span>
+      <span class="card-badge badge-critical">FINAL RECKONING</span>
+    </div>
+    <div class="card-body">
+
+      <div class="q-card">
+        <h4>Q1: If IT sheds 15-20 lakh workers by 2031 (NITI Aayog's own estimate), where do educated, English-speaking, EMI-paying professionals go?</h4>
+        <p><strong>Why not asked:</strong> IT companies fund NASSCOM, media, think tanks. Admitting structural decline risks $250B sector's stock valuations. The institutional survival of India's tech ecosystem PR machine depends on the "AI creates more jobs" narrative.</p>
+        <p><strong>Answer:</strong> 30% find AI-augmented roles. 25% downgrade to lower-paying work. 15% emigrate (but doors closing). 30% face genuine career displacement into gig/informal. The IT-hub cities (Bangalore, Hyderabad, Pune) face localized recession equivalent.</p>
+      </div>
+
+      <div class="q-card">
+        <h4>Q2: Is India training an entire generation for jobs that won't exist when they graduate?</h4>
+        <p><strong>Why not asked:</strong> Rs 5+ lakh crore coaching/education industry's business model collapses if this is admitted. 50,000+ engineering colleges have zero incentive to acknowledge curriculum irrelevance.</p>
+        <p><strong>Answer:</strong> SWI 2026 confirms: 30%+ graduate in exam-prep oriented social sciences. 83% of engineering graduates get no offer within 6 months. The curriculum-reality lag is 5-10 years and WIDENING. P(education system reforms fast enough) = <span class="negative">25%</span>.</p>
+      </div>
+
+      <div class="q-card">
+        <h4>Q3: What happens to IT-hub real estate when the IT employment model shrinks?</h4>
+        <p><strong>Why not asked:</strong> Real estate is India's largest asset class (~Rs 65-70 lakh Cr). IT hubs are priced on IT salary growth projections. Banks hold trillions in IT-hub property loans. Acknowledging this risk threatens banking stability narratives.</p>
+        <p><strong>Answer:</strong> P(IT-hub real estate correction of 15-25% in real terms by 2030) = <span class="warn">50-55%</span>. Most affected: Whitefield/Sarjapur (Bangalore), Gachibowli/Madhapur (Hyderabad), Hinjewadi (Pune), Sector 62-63 (Noida). Banking NPA risk: moderate but concentrated in specific cities.</p>
+      </div>
+
+      <div class="q-card">
+        <h4>Q4: Has India's demographic dividend already peaked without being leveraged?</h4>
+        <p><strong>Why not asked:</strong> "Demographic dividend" is India's political comfort blanket. Every growth projection since 2005 is built on it. Admitting it's slipping away undermines the core national economic narrative.</p>
+        <p><strong>Answer:</strong> Azim Premji SWI 2026: "India is approaching the END of its demographic dividend by 2040." Window was 2005-2040. Peak leverage opportunity: 2015-2030. We're past midpoint with insufficient absorption. P(India captures remaining dividend) = <span class="negative">30-35%</span>. India may become the first country in history to miss its demographic dividend entirely due to institutional inability to match young people with productive work at scale.</p>
+      </div>
+
+      <div class="q-card">
+        <h4>Q5: With household savings at multi-decade lows and debt at 41%+ of GDP, what happens when the next recession hits?</h4>
+        <p><strong>Why not asked:</strong> Government narrative: "India's consumer is resilient." Admitting fragility undermines FDI attraction and market confidence. RBI discusses this in technical reports but policy response is minimal.</p>
+        <p><strong>Answer:</strong> India's households have ZERO buffer. Next recession (2028-2030 window, P = 35%) will cause: consumer spending collapse, loan defaults spike, bank NPAs surge, credit tightening, SME failures cascade. Unlike 2008 (when Indian households had 11% savings rate), the 2028-30 household enters recession ALREADY leveraged. The landing will be much harder.</p>
+      </div>
+
+      <div class="q-card">
+        <h4>Q6: If Gulf countries automate and nationalize, what happens to 8 million Indian workers and $30B+ in annual remittances?</h4>
+        <p><strong>Why not asked:</strong> India-Gulf diplomatic relationship depends on not raising uncomfortable labor market questions publicly. Gulf remittances fund Kerala, TN, Bihar economies.</p>
+        <p><strong>Answer:</strong> Gradual decline: 2-3 million Indian Gulf workers face return or displacement by 2035. Remittance decline: $8-15B annually. Kerala most affected (Gulf remittances = ~30%+ of state GDP). This creates localized but severe economic crises in specific states. Government has NO plan for this.</p>
+      </div>
+
+      <div class="q-card">
+        <h4>Q7: Is the gig economy a genuine employment sector or a poverty trap with an app interface?</h4>
+        <p><strong>Why not asked:</strong> Platform companies have powerful lobbying. Gig employment data makes headline numbers look better. NITI Aayog projects 2.35 Cr gig workers by 2030 as a POSITIVE, not a sign of formal employment failure.</p>
+        <p><strong>Answer:</strong> For the top 15-20% of gig workers (skilled freelancers, niche service providers): genuine income opportunity. For the bottom 70-80% (delivery, ride-hail, basic services): survival-level income with declining trajectory as worker oversupply increases. Per-worker earnings falling 10-15% annually. By 2030: gig economy = new informal economy with better branding and worse protections.</p>
+      </div>
+
+      <div class="q-card">
+        <h4>Q8: Should India tax automation/AI to fund human employment?</h4>
+        <p><strong>Why not asked:</strong> Corporate lobbying. India desperate for investment. Any hint of anti-technology taxation scares away FDI. But the question becomes UNAVOIDABLE by 2030 when displacement is undeniable.</p>
+        <p><strong>Answer:</strong> Arguments for: levels playing field, funds retraining, generates revenue from productivity gains that currently only benefit shareholders. Arguments against: discourages investment, hard to define "AI" for tax purposes, makes India uncompetitive. P(India introduces automation tax by 2030) = <span class="negative">8%</span>. By 2035: 25%. The delay costs India 5-7 years of transition funding.</p>
+      </div>
+
+      <div class="q-card">
+        <h4>Q9: What is the mental health cost of India's employment crisis, and is anyone measuring it?</h4>
+        <p><strong>Why not asked:</strong> Mental health stigmatized. No systematic data collection linking unemployment to mental health outcomes. India has 170,000+ suicides annually, many linked to economic distress, but the connection is not officially tracked or acknowledged in policy.</p>
+        <p><strong>Answer:</strong> NCMH estimates 150 million+ Indians need mental health intervention. India has 0.3 psychiatrists per 100,000 (WHO recommended: 1 per 10,000). The exam warrior economy alone produces millions of depressed, anxious young people annually. This is a public health crisis masquerading as an employment crisis. NOBODY is measuring the compound cost of aspirational failure at civilizational scale.</p>
+      </div>
+
+      <div class="q-card">
+        <h4>Q10: Is India's political system structurally capable of making the 15-year investments needed to survive the AI transition?</h4>
+        <p><strong>Why not asked:</strong> Questions the foundational capacity of Indian democracy to handle a civilizational-scale economic transition. Nobody in power wants to admit this structural limitation exists. Admitting it questions the legitimacy of the system itself.</p>
+        <p><strong>Answer:</strong> India's democracy CAN handle this. It has handled Green Revolution, economic liberalization, digital payments revolution. But each required: (a) bipartisan consensus, (b) 10+ year commitment, (c) institutional capacity building. P(bipartisan consensus on AI-economy policy by 2030) = <span class="negative">15%</span>. Without it, each new government restarts the policy cycle. 5-year electoral cycles vs 15-year structural transitions = structural mismatch. This single probability, P = 15% for bipartisan consensus, is the most important number in this entire analysis. If it rises to 50%, Scenario A (Leapfrog) becomes probable. If it stays at 15%, Scenario B (Muddling) is locked in. The Indian voter holds this lever. But the voter is offered choices between parties competing on short-term transfers, not long-term structural investment. The menu, not the diner, is the constraint.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ FINAL SYNTHESIS ══════════════ -->
+  <div class="final-card">
+    <h2 style="font-size:1.8rem;font-weight:900;color:var(--blood);margin-bottom:1rem;">KAALCHAKRA FINAL SYNTHESIS</h2>
+    <p style="font-size:1rem;color:var(--text-bright);max-width:800px;margin:0 auto 1.5rem;">India stands at a civilizational inflection. The convergence of AI automation, demographic peak, climate stress, closed migration doors, and global trade realignment creates a 10-15 year window (2025-2040) in which trajectory is determined.</p>
+
+    <div class="g3" style="margin:2rem 0;">
+      <div class="stat-block" style="border:2px solid var(--acid);">
+        <div class="stat-val" style="color:var(--acid);">28%</div>
+        <div class="stat-lbl">P(Leapfrog India)</div>
+      </div>
+      <div class="stat-block" style="border:2px solid var(--gold);">
+        <div class="stat-val" style="color:var(--gold);">52%</div>
+        <div class="stat-lbl">P(Muddling India)</div>
+      </div>
+      <div class="stat-block" style="border:2px solid var(--blood);">
+        <div class="stat-val" style="color:var(--blood);">20%</div>
+        <div class="stat-lbl">P(Fracture India)</div>
+      </div>
+    </div>
+
+    <p style="font-size:0.95rem;color:var(--text-muted);max-width:800px;margin:0 auto 1.5rem;text-align:left;">The path from Scenario B to Scenario A requires 5 critical shifts before 2030. The compound probability of all 5 occurring: approximately <span class="negative">0.5%</span>. This is why the Leapfrog scenario has only 28% probability: it requires extraordinary policy coherence that India has not historically demonstrated. But India HAS demonstrated it in specific domains: UPI (world-class digital payments in 5 years), Aadhaar (1.4B biometric IDs in 10 years), Green Revolution (food self-sufficiency in 15 years). The CAPACITY exists. The WILL is the variable.</p>
+
+    <div style="background:var(--violet-glow);border:1px solid rgba(139,92,246,0.3);border-radius:8px;padding:1.5rem;text-align:left;margin:2rem auto;max-width:800px;">
+      <p style="color:var(--violet);font-style:italic;font-size:0.95rem;">
+        &#128172; <strong style="color:var(--text-bright);">The final plain truth:</strong> India's employment future is not doomed and it is not guaranteed to be bright. It is a probability distribution. The actions taken between 2025-2030, by government, by companies, and by individual Indians making career and skill decisions, will determine where on that distribution India lands.
+        <br><br>
+        This analysis is a map. What you do with the map is your decision. But now you cannot say you didn't know the terrain.
+        <br><br>
+        The positive pathways are REAL: green energy, healthcare, GCCs, manufacturing, female participation, digital public infrastructure. They exist. They are growing. They can be scaled.
+        <br><br>
+        The negative forces are also REAL: AI displacement, informal economy trap, closed migration, consumption crisis, education mismatch, fiscal pressure. They exist. They are accelerating. They will not solve themselves.
+        <br><br>
+        The outcome depends on which set of forces dominates. Right now, the negative forces have momentum. But momentum can be shifted. It requires policy at a speed and scale India has never achieved but has the CAPACITY to achieve.
+        <br><br>
+        The clock is not ticking. It has already ticked. The window is 2025-2035. After that, the consequences are locked for a generation.
+      </p>
+    </div>
+
+    <p style="margin-top:2rem;color:var(--cyan);font-size:0.9rem;font-weight:700;">
+      Nothing escaped the event horizon. Nothing escaped KAALCHAKRA.
+    </p>
+  </div>
+
+</div>
+
+<div class="part-footer">
+  <p>KAALCHAKRA Part 6 of 6 (FINAL) | Sections 6, 7 &amp; 8: Government Response + Survival + Synthesis</p>
+  <p>Sources: VB-G RAM G Act Dec 2025 (replaces MGNREGS, 125-day guarantee) | SBI Research: "MGNREGS impact on rural poverty nearly negligible" | MGNREGS demand at 5-year low: 15.6M March 2026 (Mint) | CAG Maharashtra audit: 52% works completed, Rs 14,000 Cr spent | MGNREGS FY26 release: Rs 81,502 Cr | World Inequality Report 2026 | Azim Premji University SWI 2026 | PLFS 2025 Annual | NITI Aayog AI Impact Report | Budget 2026-27: Rs 12.2L Cr capex | Household savings 5% GDP (BW March 2026) | All previously cited sources from Parts 1-5</p>
+  <p style="margin-top:0.5rem;color:var(--blood);">KAALCHAKRA DISCLOSURE: This is analytical intelligence. The projections carry probability, not certainty. The goal is clarity, not alarm or comfort. Use this to think, not to panic. Base data as of Q1 2026.</p>
+  <p style="margin-top:1rem;color:var(--text-dim);">&copy; 2026 KAALCHAKRA Analytical Engine | All data is publicly sourced and probability-weighted.</p>
+</div>
+
+</body>
+</html>

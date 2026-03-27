@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAALCHAKRA Part 4 — AI Tipping Point + Sector Deep Dives</title>
+<style>
+:root {
+  --void: #06060b;
+  --abyss: #0c0c14;
+  --deep: #12121d;
+  --surface: #1a1a28;
+  --elevated: #222235;
+  --border-subtle: #2a2a40;
+  --border-active: #3a3a55;
+  --text-bright: #eaeaf2;
+  --text-primary: #c8c8d8;
+  --text-muted: #8888a0;
+  --text-dim: #555568;
+  --blood: #dc2626;
+  --blood-glow: rgba(220,38,38,0.15);
+  --ember: #ea580c;
+  --ember-glow: rgba(234,88,12,0.12);
+  --gold: #d97706;
+  --gold-glow: rgba(217,119,6,0.12);
+  --acid: #16a34a;
+  --acid-glow: rgba(22,163,74,0.12);
+  --ice: #0ea5e9;
+  --ice-glow: rgba(14,165,233,0.12);
+  --violet: #8b5cf6;
+  --violet-glow: rgba(139,92,246,0.12);
+  --cyan: #06b6d4;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--void); color:var(--text-primary); font-family:'Segoe UI',system-ui,-apple-system,sans-serif; line-height:1.75; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:var(--void); }
+::-webkit-scrollbar-thumb { background:var(--border-subtle); border-radius:3px; }
+
+.frame { max-width:1200px; margin:0 auto; padding:3rem 1.5rem; }
+.sect-eye { font-size:0.65rem; letter-spacing:5px; text-transform:uppercase; color:var(--blood); margin-bottom:0.5rem; }
+.sect-title { font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; letter-spacing:-1px; color:var(--text-bright); margin-bottom:0.5rem; }
+.sect-desc { font-size:0.95rem; color:var(--text-muted); max-width:800px; margin-bottom:3rem; }
+
+.card { background:var(--deep); border:1px solid var(--border-subtle); border-radius:10px; margin-bottom:2rem; overflow:hidden; }
+.card-head { padding:1.5rem 2rem; display:flex; align-items:center; gap:1rem; border-bottom:1px solid var(--border-subtle); }
+.card-icon { font-size:1.5rem; }
+.card-title { font-size:1.2rem; font-weight:700; color:var(--text-bright); flex:1; }
+.card-badge { padding:0.2rem 0.7rem; border-radius:4px; font-size:0.6rem; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; }
+.badge-critical { background:var(--blood-glow); color:var(--blood); border:1px solid rgba(220,38,38,0.3); }
+.badge-structural { background:var(--ember-glow); color:var(--ember); border:1px solid rgba(234,88,12,0.3); }
+.badge-high-stakes { background:var(--gold-glow); color:var(--gold); border:1px solid rgba(217,119,6,0.3); }
+.badge-positive { background:var(--acid-glow); color:var(--acid); border:1px solid rgba(22,163,74,0.3); }
+.card-body { padding:1.5rem 2rem; }
+
+h3 { font-size:1.1rem; font-weight:700; color:var(--ice); margin:1.8rem 0 0.7rem; padding-bottom:0.3rem; border-bottom:1px solid var(--border-subtle); }
+h4 { font-size:0.95rem; font-weight:700; color:var(--text-bright); margin:1.2rem 0 0.5rem; }
+p { margin-bottom:0.7rem; font-size:0.9rem; }
+ul,ol { margin:0.5rem 0 0.8rem 1.3rem; font-size:0.88rem; color:var(--text-muted); }
+li { margin-bottom:0.35rem; }
+.num { color:var(--gold); font-weight:800; }
+.negative { color:var(--blood); font-weight:700; }
+.positive { color:var(--acid); font-weight:700; }
+.warn { color:var(--ember); font-weight:700; }
+
+.tbl-wrap { overflow-x:auto; margin:1rem 0; border:1px solid var(--border-subtle); border-radius:8px; }
+table { width:100%; border-collapse:collapse; font-size:0.8rem; }
+th { text-align:left; padding:0.6rem 0.8rem; background:rgba(14,165,233,0.06); color:var(--ice); font-weight:700; font-size:0.68rem; text-transform:uppercase; letter-spacing:1px; border-bottom:2px solid var(--border-subtle); white-space:nowrap; }
+td { padding:0.5rem 0.8rem; border-bottom:1px solid rgba(42,42,64,0.4); color:var(--text-muted); vertical-align:top; }
+tr:hover td { background:rgba(255,255,255,0.01); }
+
+.callout { padding:1rem 1.3rem; border-radius:6px; margin:1.2rem 0; font-size:0.85rem; line-height:1.7; }
+.callout-blood { background:var(--blood-glow); border-left:3px solid var(--blood); }
+.callout-ember { background:var(--ember-glow); border-left:3px solid var(--ember); }
+.callout-gold { background:var(--gold-glow); border-left:3px solid var(--gold); }
+.callout-acid { background:var(--acid-glow); border-left:3px solid var(--acid); }
+.callout-ice { background:var(--ice-glow); border-left:3px solid var(--ice); }
+.callout-street { background:var(--violet-glow); border-left:3px solid var(--violet); color:var(--violet); font-style:italic; }
+.callout strong { color:var(--text-bright); }
+
+.chain { background:var(--abyss); border:1px solid var(--border-subtle); border-radius:8px; padding:1.2rem 1.5rem; margin:1.2rem 0; font-family:'Cascadia Code','Fira Code','Consolas',monospace; font-size:0.72rem; line-height:1.9; color:var(--cyan); overflow-x:auto; white-space:pre; }
+
+.tabs { display:flex; gap:0; margin-bottom:1.5rem; border-bottom:1px solid var(--border-subtle); overflow-x:auto; }
+.tab-btn { padding:0.8rem 1.3rem; background:none; border:none; color:var(--text-dim); cursor:pointer; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; border-bottom:2px solid transparent; transition:all 0.3s; white-space:nowrap; }
+.tab-btn:hover, .tab-btn.active { color:var(--ice); border-bottom-color:var(--ice); }
+.tab-content { display:none; }
+.tab-content.active { display:block; animation:fadeIn 0.3s ease; }
+@keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+
+.g2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:1.2rem; }
+.g3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; }
+.stat-block { background:var(--surface); border:1px solid var(--border-subtle); border-radius:8px; padding:1rem; text-align:center; }
+.stat-val { font-size:1.6rem; font-weight:900; }
+.stat-lbl { font-size:0.6rem; text-transform:uppercase; letter-spacing:2px; color:var(--text-dim); margin-top:0.3rem; }
+
+.divider { height:1px; background:linear-gradient(90deg,transparent,var(--border-subtle),transparent); margin:3rem 0; }
+.part-footer { text-align:center; padding:3rem 1.5rem; border-top:1px solid var(--border-subtle); color:var(--text-dim); font-size:0.72rem; }
+@media(max-width:768px) { .g2,.g3{grid-template-columns:1fr;} .chain{font-size:0.62rem;padding:0.8rem;} .card-body{padding:1rem 1.2rem;} }
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="sect-eye">Section 2 + 3 &middot; Part 4 of 6</div>
+  <h2 class="sect-title">The AI Tipping Point + Sector Deep Dives</h2>
+  <p class="sect-desc">The most consequential force reshaping employment. A forensic investigation of displacement, timeline, India-specific factors, and sector-by-sector reality checks from 2024 to 2040.</p>
+
+  <!-- ███████████████ SECTION 2: AI TIPPING POINT ███████████████ -->
+
+  <div style="background:var(--blood-glow); border:1px solid rgba(220,38,38,0.3); border-radius:10px; padding:1.5rem 2rem; margin-bottom:3rem;">
+    <h3 style="border:none; color:var(--blood); margin-top:0;">&#9888; CRITICAL NEW DATA: NITI Aayog AI Impact Report</h3>
+    <p>NITI Aayog released "Roadmap for Job Creation in the AI Economy" (developed with NASSCOM, BCG, and experts from IBM, Infosys, Tech Mahindra, LTIMindtree). The report warns: India's tech services sector could lose <span class="negative">15-20 lakh jobs</span> over 5 years. Worst case: sector shrinks from <span class="num">75-80 lakh</span> (2023) to <span class="negative">60 lakh</span> (2031). That's <span class="negative">1 in 4 IT professionals</span> displaced. NITI Aayog CEO: "If you do nothing, you are bound to lose jobs. Those 2 million probably support an ecosystem of 20-30 million others." This is OFFICIAL acknowledgment of the crisis.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <span class="card-icon">&#9200;</span>
+      <span class="card-title">2.1 The Displacement Timeline (2024-2040)</span>
+      <span class="card-badge badge-critical">CRITICAL</span>
+    </div>
+    <div class="card-body">
+      <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('ai', 0, this)">2024-2026 IMMEDIATE</button>
+        <button class="tab-btn" onclick="showTab('ai', 1, this)">2027-2030 TIPPING</button>
+        <button class="tab-btn" onclick="showTab('ai', 2, this)">2031-2035 DEEP CUT</button>
+        <button class="tab-btn" onclick="showTab('ai', 3, this)">2036-2040 AGI HORIZON</button>
+      </div>
+
+      <div class="tab-content ai active">
+        <h4>Phase 1: 2024-2026 — The Hiring Freeze Disguised as Stability</h4>
+        <p>AI's first impact is invisible to most: companies don't fire, they simply stop hiring or slow attrition replacement. Active tech job openings in India: <span class="negative">1.03 lakh (Jan 2026)</span>, down <span class="negative">60% from early 2022 peak</span> of 2.6 lakh. This is the real displacement: the jobs that never materialize.</p>
+
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>Job Category</th><th>Current Workforce</th><th>Displacement Mechanism</th><th>P(50%+ Affected by 2027)</th></tr>
+            <tr>
+              <td>Data Entry & Back-Office</td>
+              <td>~35-40 lakh</td>
+              <td>LLMs + RPA + OCR automation. Human in the loop down to 20% of workflow.</td>
+              <td class="negative">72%</td>
+            </tr>
+            <tr>
+              <td>Customer Support L1</td>
+              <td>~25-30 lakh</td>
+              <td>Voice AI + chatbots handling 60%+ queries. Humans only for escalations.</td>
+              <td class="negative">68%</td>
+            </tr>
+            <tr>
+              <td>Manual Software Testing</td>
+              <td>~12-15 lakh</td>
+              <td>AI test generation, automated regression. Test engineer role compressed 40%.</td>
+              <td class="warn">52%</td>
+            </tr>
+            <tr>
+              <td>Basic Coding/Maintenance</td>
+              <td>~15-20 lakh</td>
+              <td>GitHub Copilot, Cursor, Claude Code. Junior dev work automatable 50-70%.</td>
+              <td class="warn">48%</td>
+            </tr>
+            <tr>
+              <td>Content Writing (SEO/Template)</td>
+              <td>~8-10 lakh</td>
+              <td>GPT-4/Claude/Gemini content gen. Human editing only for quality/brand.</td>
+              <td class="negative">70%</td>
+            </tr>
+            <tr>
+              <td>Basic Accounting/Bookkeeping</td>
+              <td>~15-18 lakh</td>
+              <td>AI accounting tools (Zoho, Tally, QuickBooks AI). GST filing automated.</td>
+              <td class="warn">58%</td>
+            </tr>
+            <tr>
+              <td>Translation Services</td>
+              <td>~5-7 lakh</td>
+              <td>Multilingual LLMs crossing quality threshold for 8+ Indian languages.</td>
+              <td class="warn">62%</td>
+            </tr>
+            <tr style="background:var(--blood-glow);">
+              <td><strong>TOTAL AT-RISK PHASE 1</strong></td>
+              <td><strong>1.15-1.45 Cr</strong></td>
+              <td><strong>Hiring suppression + role compression</strong></td>
+              <td class="negative"><strong>~60% affected</strong></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="callout callout-blood">
+          <strong>THE NITI AAYOG CONFIRMATION:</strong> The government's own think tank, working with NASSCOM (the IT industry body), confirms 15-20 lakh IT job losses over 5 years. This isn't anti-tech alarmism. This is industry self-assessment. When NASSCOM, whose institutional survival depends on projecting optimism, collaborates on a report predicting mass displacement, you know the reality is WORSE than the report states. P(actual displacement exceeds NITI Aayog's range) = <span class="negative">60%</span>.
+        </div>
+      </div>
+
+      <div class="tab-content ai">
+        <h4>Phase 2: 2027-2030 — The Structural Decline Begins</h4>
+        <p>This is when displacement moves from "suppressed hiring" to "active workforce reduction." The 15,000+ layoff announcement in 2027 (projected in Part 2) is the visible manifestation of what's been building.</p>
+
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>Job Category</th><th>Workforce 2024</th><th>Workforce 2030 (est.)</th><th>Change</th><th>Cascade Effect</th></tr>
+            <tr>
+              <td>IT Services (traditional outsourcing)</td>
+              <td>~40-45 lakh</td>
+              <td>~28-32 lakh</td>
+              <td class="negative">-30-35%</td>
+              <td>Every 1L IT jobs lost = 2-3L indirect (housing, retail, services around IT hubs)</td>
+            </tr>
+            <tr>
+              <td>BPO/KPO/LPO</td>
+              <td>~18-22 lakh</td>
+              <td>~10-12 lakh</td>
+              <td class="negative">-40-45%</td>
+              <td>Entire business model of labor arbitrage becomes uneconomic vs AI</td>
+            </tr>
+            <tr>
+              <td>Banking Back-Office</td>
+              <td>~20-25 lakh</td>
+              <td>~12-15 lakh</td>
+              <td class="negative">-35-40%</td>
+              <td>Branch consolidation + digital banking acceleration. ATMs even declining.</td>
+            </tr>
+            <tr>
+              <td>Insurance Claims/Underwriting</td>
+              <td>~8-10 lakh</td>
+              <td>~4-5 lakh</td>
+              <td class="negative">-50%</td>
+              <td>AI underwriting accuracy exceeds human average. Only complex cases need humans.</td>
+            </tr>
+            <tr>
+              <td>Retail Sales (Organized)</td>
+              <td>~50-60 lakh</td>
+              <td>~35-42 lakh</td>
+              <td class="negative">-25-30%</td>
+              <td>Self-checkout + AI recommendation + e-commerce shift. Store staff declining.</td>
+            </tr>
+            <tr>
+              <td>Basic Journalism</td>
+              <td>~5-8 lakh</td>
+              <td>~3-4 lakh</td>
+              <td class="negative">-40-50%</td>
+              <td>AI-generated news, data journalism automation. Investigative survives.</td>
+            </tr>
+            <tr>
+              <td>Paralegal/Legal Research</td>
+              <td>~3-5 lakh</td>
+              <td>~2-2.5 lakh</td>
+              <td class="negative">-40-50%</td>
+              <td>Contract analysis, case research, compliance: heavily automatable.</td>
+            </tr>
+            <tr>
+              <td>Medical Transcription</td>
+              <td>~2-3 lakh</td>
+              <td>~0.5-1 lakh</td>
+              <td class="negative">-65-75%</td>
+              <td>Voice-to-text AI near-perfect for medical terminology.</td>
+            </tr>
+          </table>
+        </div>
+
+        <p><strong>The Cascade Logic:</strong> NITI Aayog CEO's statement is the key: "2 million jobs support an ecosystem of 20-30 million." Let's trace it:</p>
+
+        <div class="chain">
+[15 LAKH IT JOBS DISAPPEAR (2024-2030)]
+|
++-- IMMEDIATE ECOSYSTEM (multiplier ~2.5x)
+|   +-- IT hub real estate: 37-40 lakh sq ft of office space goes vacant
+|   |   +-- Property values fall 10-15% real terms
+|   |   +-- Construction workers building next IT park: PROJECTS CANCELLED
+|   +-- Restaurants, cafes near IT parks: 40-50% revenue decline
+|   |   +-- ~3-5 lakh F&B jobs lost
+|   +-- Auto/taxi services dependent on IT worker commute
+|   |   +-- ~1-2 lakh drivers' income falls 30-40%
+|   +-- Retail, gyms, salons near IT hubs
+|   |   +-- ~2-3 lakh service sector jobs affected
+|
++-- SECOND-ORDER (multiplier ~1.8x)
+|   +-- Residential real estate: IT workers downsize or leave cities
+|   |   +-- Landlords lose tenants, reduce asking rent
+|   |   +-- Domestic workers employed by IT families: ~2-3 lakh affected
+|   +-- Private schools: IT family enrollments decline
+|   |   +-- Fee pressure, teacher hiring stops
+|   +-- Healthcare (private): IT families cut health spending
+|   |   +-- Hospital revenue affected, expansion plans paused
+|
++-- THIRD-ORDER (financial system)
+    +-- EMI defaults increase: home loans, vehicle loans, education loans
+    +-- Banks: NPAs rise in IT-hub cities
+    +-- Credit tightens: SMEs around IT hubs can't get loans
+    +-- MORE job losses in SME sector
+    +-- THE SPIRAL CONTINUES
+
+[TOTAL ECOSYSTEM IMPACT OF 15 LAKH DIRECT IT JOB LOSS]
+= 40-50 LAKH INDIRECT JOBS AFFECTED
+= Rs 1.2-1.5 LAKH CRORE annual consumption REMOVED from economy
+= IT hub city GDP growth: -2 to -3% for 2-3 years</div>
+
+        <div class="callout callout-street">
+          &#128172; <strong>In plain terms:</strong> When an IT company in Bangalore fires 10,000 people, it's not just 10,000 families affected. It's the Darshini restaurant that loses 40% of its lunch customers. The PG owner who has 3 empty rooms for 6 months. The auto driver whose daily earnings drop from Rs 800 to Rs 500. The tuition teacher who loses 5 students. The gym that shuts down. The mall that sees footfall collapse. This is how a "sectoral issue" becomes a city-wide crisis. And Bangalore, Hyderabad, Pune, Gurgaon are all IT-dependent cities. When IT sneezes, these cities get pneumonia.
+        </div>
+      </div>
+
+      <div class="tab-content ai">
+        <h4>Phase 3: 2031-2035 — The Professions the Middle Class Thought Were Safe</h4>
+        <p>This is the controversial analysis. The jobs that parents tell children are "forever secure" face existential pressure.</p>
+
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>Profession</th><th>Current Workforce</th><th>What Parents Believe</th><th>2031-2035 Reality</th><th>P(Major Disruption)</th></tr>
+            <tr>
+              <td><strong>Mid-Level Management</strong></td>
+              <td>~50-60 lakh (across sectors)</td>
+              <td>"AI can't replace human judgment and people skills"</td>
+              <td>AI handles resource allocation, scheduling, performance analytics, basic decision-support. Management layers compress. Span of control per senior manager increases 3-5x.</td>
+              <td class="warn">48%</td>
+            </tr>
+            <tr>
+              <td><strong>Chartered Accountants (Compliance)</strong></td>
+              <td>~4 lakh CAs + ~8 lakh in CA firms</td>
+              <td>"Regulatory complexity = permanent job security"</td>
+              <td>AI handles tax filing, GST compliance, audit trails for 80%+ of standard cases. CAs needed only for complex advisory, litigation, strategy. CA firm employment: -35-40%.</td>
+              <td class="warn">52%</td>
+            </tr>
+            <tr>
+              <td><strong>School Teachers (K-12)</strong></td>
+              <td>~80 lakh+ (govt + private)</td>
+              <td>"Children need human teachers for learning and values"</td>
+              <td>AI tutors for personalized learning. Teacher role shifts from instruction to mentoring/facilitation. Student-teacher ratio increases 30-40%. Not elimination but transformation + reduced headcount through attrition.</td>
+              <td>32%</td>
+            </tr>
+            <tr>
+              <td><strong>Financial Advisors (Non-HNI)</strong></td>
+              <td>~6-8 lakh</td>
+              <td>"People need human trust with their money"</td>
+              <td>Robo-advisory + vernacular AI for financial planning outperforms average human advisor for 80% of cases. Human advisors: only for HNI complex cases or emotional support.</td>
+              <td class="warn">58%</td>
+            </tr>
+            <tr>
+              <td><strong>Architects (Standard Projects)</strong></td>
+              <td>~3-4 lakh</td>
+              <td>"Architecture is creative, AI can't do creativity"</td>
+              <td>AI generates design options, handles building code compliance, produces 3D renders. Junior architects: 50% displaced. Senior architects become AI-output editors/selectors.</td>
+              <td>38%</td>
+            </tr>
+            <tr>
+              <td><strong>Radiologists (Routine Reading)</strong></td>
+              <td>~25,000-30,000</td>
+              <td>"Medical expertise can't be replaced"</td>
+              <td>AI diagnostic accuracy exceeds average radiologist for common scans (X-ray, CT for standard conditions). Radiologists needed for complex cases and validation. Demand: -30-40%.</td>
+              <td>42%</td>
+            </tr>
+            <tr>
+              <td><strong>Software Engineers (Mid-Level)</strong></td>
+              <td>~25-30 lakh</td>
+              <td>"Coders will always be in demand"</td>
+              <td>AI code generation approaches mid-level capability. What took 5 engineers takes 2 engineers + AI. Mass displacement of "average" coders. Top-tier thrive.</td>
+              <td class="warn">55%</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="callout callout-ember">
+          <strong>THE MIDDLE-CLASS TRAP:</strong> India's aspirational middle class invested heavily (Rs 5-50 lakh per child) in these "forever secure" professions. CA requires 4.5 years (graduation + articleship + exams). Engineering: 4 years. MBA: 2 years post-graduation. By the time a child who started CA in 2024 qualifies in 2028-2029, the CA market has already shifted 40% toward AI. The parents' mental model is 1990-2020 (where these were lifetime secure careers). The reality is 2025-2040 (where these are 5-10 year half-life skills). This expectation-reality mismatch is the single biggest source of middle-class anxiety by 2033.
+        </div>
+      </div>
+
+      <div class="tab-content ai">
+        <h4>Phase 4: 2036-2040 — The AGI Question</h4>
+        <p>If Artificial General Intelligence (AGI) achieves functional deployment by 2040, employment undergoes a phase change, not gradual evolution. Leading AI researchers' median estimate: P(AGI by 2040) = <span class="num">25-35%</span>. This is LOW probability but HIGH impact.</p>
+
+        <div class="g2">
+          <div class="callout callout-blood">
+            <h4>AGI Scenario: What Survives?</h4>
+            <p>If AGI becomes real, approximately <span class="negative">60-70%</span> of 2024 job categories don't exist in recognizable form by 2040. What survives:</p>
+            <ul>
+              <li>Complex physical work in unstructured environments (plumbing in old buildings, electrical in unique industrial setups): ~75% survival</li>
+              <li>Healthcare requiring human touch (surgery, complex care, end-of-life): ~60%, heavily AI-assisted</li>
+              <li>Creative work where human experience IS the value (writing memoir, original art, performance): ~50-60%</li>
+              <li>Political/social leadership (humans governing humans): ~80%</li>
+              <li>Spiritual/religious roles: ~90%</li>
+              <li>High-stakes negotiation, diplomacy: ~65%</li>
+              <li>Childcare and elderly care (emotional work): ~70%</li>
+            </ul>
+          </div>
+          <div class="callout callout-ice">
+            <h4>Non-AGI Scenario (P = 65-75%): Narrow AI Continues</h4>
+            <p>More likely: AI continues automating TASKS within jobs, not entire professions. By 2040:</p>
+            <ul>
+              <li>~30-40% of work activities are AI-performed</li>
+              <li>Most jobs exist but are "AI-augmented" versions</li>
+              <li>Employment in recognizable form: ~70-80% of 2024 categories still exist</li>
+              <li>The displacement is real but manageable: 3.5-4.5 crore over 16 years = ~22-28 lakh/year, which formal economy CAN absorb if other sectors grow</li>
+              <li>The challenge: the displaced and the newly created jobs require DIFFERENT skills. The transition pain is the crisis, not the endpoint.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout callout-street">
+          &#128172; <strong>In plain terms:</strong> The AGI question is: do you prepare for a world where machines do EVERYTHING better, or a world where machines do SOME THINGS better? The honest answer: prepare for the second, hope it's not the first. If you're a 20-year-old in 2026 choosing a career, choose something that combines: human judgment + AI tools + domain expertise + skills that take years to build. Don't choose: anything that's purely rules-based, anything a smart 18-year-old could learn in 6 months, or anything that's just "following a process." Those jobs have a half-life of 3-7 years.
+        </div>
+      </div>
+
+      <div class="tab-content ai">
+        <h4>New AI-Native Jobs (India-Specific Reality Check)</h4>
+        <p>NITI Aayog claims: "4 million new AI-enabled jobs could be created within 5 years." Let's forensically examine what these actually are and whether India is positioned to capture them.</p>
+
+        <div class="tbl-wrap">
+          <table>
+            <tr><th>New Role</th><th>Jobs by 2030 (NITI projection)</th><th>Jobs by 2030 (KAALCHAKRA adj.)</th><th>Why the Gap?</th><th>P(Role Itself Automated by 2040)</th></tr>
+            <tr>
+              <td>AI/ML Engineers</td>
+              <td>Part of 40L total</td>
+              <td>2-3 lakh</td>
+              <td>High skill barrier. India produces ~10,000 quality AI engineers/year currently. Needs 10x scale-up.</td>
+              <td>25%</td>
+            </tr>
+            <tr>
+              <td>Data Engineers & Scientists</td>
+              <td>Part of 40L</td>
+              <td>3-5 lakh</td>
+              <td>Growing fast. GCCs driving demand. Realistic.</td>
+              <td>30%</td>
+            </tr>
+            <tr>
+              <td>AI Prompt Engineers (Multilingual)</td>
+              <td>Not specified</td>
+              <td>2-4 lakh</td>
+              <td>Indian language advantage. But role itself simplifying rapidly.</td>
+              <td class="negative">65%</td>
+            </tr>
+            <tr>
+              <td>AI Ethics & Governance</td>
+              <td>Part of 40L</td>
+              <td>50,000-80,000</td>
+              <td>Nascent. Regulation-dependent. India hasn't built this capacity yet.</td>
+              <td>25%</td>
+            </tr>
+            <tr>
+              <td>Data Labeling/Training (Current Indian Advantage)</td>
+              <td>Part of 40L</td>
+              <td>8-12 lakh (2030), then DECLINING</td>
+              <td>India is global leader NOW. But AI self-training improving. This advantage has 5-7 year window.</td>
+              <td class="negative">75%</td>
+            </tr>
+            <tr>
+              <td>AI-Human Workflow Designers</td>
+              <td>Part of 40L</td>
+              <td>1.5-2.5 lakh</td>
+              <td>Genuinely new role. But requires both domain expertise AND AI literacy. Rare combo.</td>
+              <td>40%</td>
+            </tr>
+            <tr>
+              <td>Vernacular AI Content Specialists</td>
+              <td>Not specified</td>
+              <td>3-6 lakh</td>
+              <td>India's 22-language diversity = advantage. Real opportunity.</td>
+              <td>45%</td>
+            </tr>
+            <tr style="background:var(--gold-glow);">
+              <td><strong>TOTAL NEW AI JOBS (realistic)</strong></td>
+              <td><strong>40 lakh (NITI)</strong></td>
+              <td><strong>20-32 lakh by 2030</strong></td>
+              <td><strong>NITI is optimistic by 2x</strong></td>
+              <td><strong>Avg: 45%</strong></td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="callout callout-blood">
+          <strong>THE MATH DOESN'T CLOSE:</strong> Even accepting NITI Aayog's optimistic 40 lakh new jobs, they admit 15-20 lakh displacement in IT alone. Add BPO (8-10L), banking (6-8L), retail (8-12L), other sectors (10-15L), and total displacement is 50-70 lakh by 2030. New jobs created: 20-40 lakh. <strong>NET GAP: 15-35 lakh.</strong> And the people displaced are NOT the same people who get the new AI jobs. A 40-year-old manual tester doesn't become an AI/ML engineer. The gap is STRUCTURAL, not just numerical.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <span class="card-icon">&#127470;&#127475;</span>
+      <span class="card-title">2.2 India-Specific AI Impact: The Moat is Gone</span>
+      <span class="card-badge badge-critical">EXISTENTIAL</span>
+    </div>
+    <div class="card-body">
+      <h3>The Labor Arbitrage Model is DEAD</h3>
+      <p>India's entire IT-BPO sector ($254B in FY24) was built on one premise: <strong>Indian engineers are 1/5 to 1/8 the cost of Western engineers with acceptable quality.</strong> When AI does the work at 1/100th the cost with higher quality, the arbitrage advantage evaporates completely.</p>
+
+      <p>Cost comparison (2026):</p>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Task</th><th>US Developer Cost</th><th>Indian Developer Cost</th><th>AI Cost</th><th>Winner</th></tr>
+          <tr><td>Basic CRUD app</td><td>$50K</td><td>$8K</td><td>$200 (GPT-4 API + Cursor)</td><td class="negative">AI</td></tr>
+          <tr><td>Standard UI/UX design</td><td>$60K</td><td>$10K</td><td>$500 (Midjourney + Figma AI)</td><td class="negative">AI</td></tr>
+          <tr><td>Data analysis report</td><td>$40K (analyst)</td><td>$6K</td><td>$100 (Claude + data tools)</td><td class="negative">AI</td></tr>
+          <tr><td>Customer support (1000 tickets)</td><td>$35K</td><td>$5K</td><td>$300 (voice AI + chatbot)</td><td class="negative">AI</td></tr>
+          <tr><td>Complex system architecture</td><td>$150K</td><td>$25K</td><td>$5K (AI assists but human critical)</td><td class="positive">Human + AI</td></tr>
+        </table>
+      </div>
+
+      <p>When COST is no longer the variable, India needs a new competitive advantage. Candidates:</p>
+
+      <div class="g3">
+        <div class="stat-block">
+          <div class="stat-val" style="color:var(--acid)">P = 42%</div>
+          <div class="stat-lbl">Domain Expertise + AI Integration</div>
+          <p style="font-size:0.75rem; margin-top:0.5rem; color:var(--text-muted);">Indians who understand BOTH the business problem AND the AI solution. GCCs hiring this profile.</p>
+        </div>
+        <div class="stat-block">
+          <div class="stat-val" style="color:var(--gold)">P = 35%</div>
+          <div class="stat-lbl">Scale + Diversity for AI Training</div>
+          <p style="font-size:0.75rem; margin-top:0.5rem; color:var(--text-muted);">1.4B people, 22 languages, massive use-case diversity. Unmatched training data.</p>
+        </div>
+        <div class="stat-block">
+          <div class="stat-val" style="color:var(--ice)">P = 30%</div>
+          <div class="stat-lbl">GCC Ecosystem as R&D Hub</div>
+          <p style="font-size:0.75rem; margin-top:0.5rem; color:var(--text-muted);">1,700+ GCCs, growing to 2,500+. India as innovation center, not just cost center.</p>
+        </div>
+      </div>
+
+      <p>The sobering assessment: P(India successfully pivots to a new post-cost-arbitrage competitive advantage by 2030) = <span class="warn">40-45%</span>. The alternative is India becomes a DECLINING IT power, not a growing one. Revenue might grow (AI productivity), but employment and global relevance shrink.</p>
+
+      <h3>The BPO/KPO Death Watch</h3>
+      <div class="g3">
+        <div class="stat-block" style="border:1px solid var(--ember);">
+          <div class="stat-val" style="color:var(--ember)">2027</div>
+          <div class="stat-lbl">First Major BPO Shutdown</div>
+          <p style="font-size:0.75rem; margin-top:0.5rem; color:var(--text-muted);">P = 55%. A 5,000+ employee BPO announces closure due to client automation.</p>
+        </div>
+        <div class="stat-block" style="border:1px solid var(--blood);">
+          <div class="stat-val" style="color:var(--blood)">2030</div>
+          <div class="stat-lbl">Sector Employment: -40%</div>
+          <p style="font-size:0.75rem; margin-top:0.5rem; color:var(--text-muted);">From 20 lakh to 12 lakh. Voice AI handling 70%+ of customer interactions.</p>
+        </div>
+        <div class="stat-block" style="border:1px solid var(--blood);">
+          <div class="stat-val" style="color:var(--blood)">2035</div>
+          <div class="stat-lbl">Traditional BPO Nearly Extinct</div>
+          <p style="font-size:0.75rem; margin-top:0.5rem; color:var(--text-muted);">P = 70%. Only specialized KPO (research, complex analysis) survives.</p>
+        </div>
+      </div>
+
+      <p>The cities most affected: Bangalore, Hyderabad, Pune, Noida, Gurgaon all have massive BPO concentrations. When BPO dies, these aren't just job losses; they're entire neighborhoods that lose their economic reason for existing.</p>
+
+      <h3>The AI Divide: India's Internal Apartheid</h3>
+      <div class="chain">
+[AI DEPLOYMENT IN INDIA: THE THREE WORLDS]
+
+WORLD 1: Top 3-5% (AI-Native Elite)
+  +-- Profile: English fluent, Tier-1 education, globally connected
+  +-- Skills: AI/ML, cloud, data science, product, leadership
+  +-- Income: Rs 15 lakh to Rs 2 crore+ annually
+  +-- AI Impact: MASSIVELY POSITIVE. Income multiplier 3-5x.
+  +-- Employment: Demand exceeds supply. Salary inflation 15-25%/year.
+  +-- Geography: Metro cities, GCC hubs, global remote work
+  +-- Life quality: First-world standards in India
+  +-- Wealth accumulation: Top 1% will own 50%+ of wealth by 2040
+
+WORLD 2: Middle 30-35% (Educated but AI-Adjacent)
+  +-- Profile: Degree holders, urban/semi-urban, functional English
+  +-- Skills: Traditional white-collar, slowly adopting AI tools
+  +-- Income: Rs 2.5-8 lakh annually (stagnant in real terms)
+  +-- AI Impact: COMPRESSIVE. 5 jobs become 2 jobs with AI.
+  +-- Employment: Constant anxiety. Reskilling every 3-4 years to survive.
+  +-- Geography: Tier-1/2 cities, job insecurity drives mobility
+  +-- Life quality: "Squeezed middle" — EMIs, education costs, no buffer
+  +-- Political behavior: MOST VOLATILE. Swing voters. Protest-prone.
+
+WORLD 3: Bottom 60-65% (AI-Irrelevant... For Now)
+  +-- Profile: Rural, informal, vernacular, manual work
+  +-- Skills: Physical labor, basic literacy, non-digital
+  +-- Income: Rs 0.5-2.5 lakh annually
+  +-- AI Impact (2024-2030): INDIRECT. The jobs they migrate to disappear.
+  +-- AI Impact (2031-2040): DIRECT. Even manual work faces robotics.
+  +-- Employment: Survival economy. Multiple income streams, all precarious.
+  +-- Geography: Rural + urban slums
+  +-- Life quality: Subsistence. One shock = poverty trap.
+  +-- Political behavior: Vote for transfers, freebies, identity</div>
+
+      <p>These three worlds coexist within India but interact minimally. An AI engineer and a delivery worker are economically in different countries that happen to share a border.</p>
+    </div>
+  </div>
+
+  <!-- ███████████████ SECTION 3: SECTOR DEEP DIVES ███████████████ -->
+
+  <div class="divider"></div>
+
+  <div class="sect-eye" style="margin-top:3rem;">Section 3</div>
+  <h2 class="sect-title">Sector Deep Dives: 2024-2040 Employment Arcs</h2>
+  <p class="sect-desc">Not year-by-year. The NARRATIVE ARC of each major sector with inflection points, peak employment years, decline trajectories, and honest probability assessments.</p>
+
+  <!-- IT SECTOR -->
+  <div class="card">
+    <div class="card-head">
+      <span class="card-icon">&#128187;</span>
+      <span class="card-title">3.1 IT & Software Services: The Sector That Built and Hollowed the Middle Class</span>
+      <span class="card-badge badge-structural">STRUCTURAL DECLINE</span>
+    </div>
+    <div class="card-body">
+      <h3>The Numbers (Grounded in Reality)</h3>
+      <p>FY24 revenue: <span class="num">$254 billion</span> (NASSCOM). Employment: <span class="num">54 lakh</span> (5.4 million, March 2023 data). Plus ~1.4 crore in extended ecosystem (hardware, retail, services). India's IT-BPM is 7.4% of GDP. Exports: $194B (79% of revenue). This is the sector that created India's middle class in 1995-2020. By 2030-2035, it might be the sector that hollows it.</p>
+
+      <h3>The 2024-2030 Arc: From Growth Engine to Efficiency Machine</h3>
+      <p>Peak IT employment: 2022-2023 at ~57-58 lakh. FY24: net reduction of ~60,000 (TCS, Infosys, Wipro combined). FY25: further flat to negative. By 2030: NITI Aayog worst case: <span class="negative">60 lakh</span> (down from 75-80L if you include IT-BPM combined in 2023). KAALCHAKRA estimate: <span class="num">48-55 lakh</span> (IT services + BPM), with GCCs at 25-30 lakh. Total IT ecosystem: ~42-48 lakh from 54 lakh in 2023.</p>
+
+      <h3>The GCC Story: The ONLY Growth Area</h3>
+      <p>India hosts <span class="num">1,700+ GCCs</span> (2025), up from ~1,580 in 2024, employing ~1.7-2 million. These are NOT traditional IT services. GCCs are: multinational R&D centers, product development hubs, AI labs, cybersecurity operations, strategic innovation centers. They hire the TOP 10-15% of Indian engineering talent. Average GCC salary: <span class="positive">Rs 12-35 lakh</span> (vs IT services Rs 3.5-8 lakh for same experience).</p>
+
+      <p>GCC growth projection: 2,100-2,500 centers by 2030, employing 25-30 lakh. This IS real job creation and high-quality. But it serves only the top-tier talent. The bottom 60-70% of engineering graduates who would have entered IT services in 2015 have NO path into GCCs in 2025. The quality bar has risen beyond their reach.</p>
+
+      <div class="callout callout-ice">
+        <strong>POSITIVE: GCC ecosystem represents India transitioning from cost advantage to capability advantage.</strong> Global companies are building their most strategic functions in India. Coimbatore, Jaipur, Kochi, Chandigarh (Tier-2 cities) now have GCCs. If this trend continues, India becomes a INNOVATION hub, not just outsourcing destination. This is the path to Scenario A (Leapfrog). P(GCC model becomes India's dominant tech employment story by 2035) = <span class="positive">55%</span>. But this also means SMALLER total employment in tech at HIGHER productivity and wages. The mass employment IT model is dead. The elite employment GCC model is thriving. That's not good news for the average engineering graduate.
+      </div>
+
+      <h3>What Jobs Are ALREADY Gone (2024-2026 Evidence)</h3>
+      <p>Tech hiring openings: <span class="negative">1.03 lakh (Jan 2026)</span>, down 60% from 2.6 lakh (early 2022). This is a 1.5+ lakh job deficit that exists right now. Where did those jobs go? They were absorbed by AI productivity. Former HCL CEO Vineet Nayar (March 2024): "Skills for coding, testing, maintenance, responding to trouble tickets will be taken over by AI. These skills will become obsolete."</p>
+
+      <p>Over 500,000 tech layoffs globally from 2022-April 2024 (includes India). Attrition: IT-BPM has the HIGHEST employee attrition rate in India, driven by workers seeing the writing on the wall and jumping ship before pushed.</p>
+
+      <h3>The 2031-2040 Endgame</h3>
+      <p>By 2035, India's IT sector employs <span class="num">38-45 lakh</span> (down from 54 lakh in 2023). Revenue: $300-350B+ (NASSCOM's target, likely achievable). <strong>Revenue per employee: UP 80-100%.</strong> The sector is MORE valuable but employs FEWER people. Those employed are paid MORE (top-quartile salaries rising). But the bottom 50% of the sector's 2023 workforce is gone. They're in gig economy, they've emigrated, they're in government exam prep, or they've left urban centers entirely.</p>
+
+      <p>By 2040, "IT job" in India means: AI/ML engineering, cloud architecture, cybersecurity, product management, or senior technical leadership. The $25,000/year coder position that employed lakhs from 2000-2025 doesn't exist anymore. The ladder that lifted millions into middle class has been retracted.</p>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> If you're an IT employee in 2026, your sector isn't dying. It's TRANSFORMING into something that needs 60-70% as many people as it does today. The question isn't whether IT will exist in 2040. It will, and it'll be huge. The question is whether YOUR job within IT will exist, and whether your skills are in the top 40% that survives the transformation or the bottom 60% that gets restructured. If you can't honestly answer "I'm in the top 40%," you need a plan B. Not in 5 years. Now.
+      </div>
+    </div>
+  </div>
+
+  <!-- MANUFACTURING -->
+  <div class="card">
+    <div class="card-head">
+      <span class="card-icon">&#127981;</span>
+      <span class="card-title">3.2 Manufacturing: The Race Against the Robots</span>
+      <span class="card-badge badge-high-stakes">HIGH STAKES</span>
+    </div>
+    <div class="card-body">
+      <h3>The China+1 Reality Matrix</h3>
+      <p>India IS winning some China+1 flows. But so are Vietnam, Bangladesh, Mexico, and Thailand. The question is: which sectors is India ACTUALLY capturing?</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Sector</th><th>India's Position</th><th>Main Competitor</th><th>P(India Dominates by 2030)</th><th>Job Creation Potential</th></tr>
+          <tr>
+            <td>Smartphones & Electronics Assembly</td>
+            <td><strong>WINNING</strong> (Apple, Samsung, Foxconn scaling)</td>
+            <td>Vietnam</td>
+            <td class="positive">65%</td>
+            <td>+6-10 lakh by 2030</td>
+          </tr>
+          <tr>
+            <td>Semiconductors (Fab + ATMP)</td>
+            <td><strong>STARTING</strong> (Micron, Tata, proposals in pipeline)</td>
+            <td>Malaysia, Vietnam, Taiwan</td>
+            <td class="warn">35%</td>
+            <td>+2-4 lakh by 2035 (if successful)</td>
+          </tr>
+          <tr>
+            <td>Textiles & Apparel</td>
+            <td><strong>LOSING SHARE</strong> (globally declining despite PLI)</td>
+            <td>Bangladesh, Vietnam, Ethiopia</td>
+            <td class="negative">22%</td>
+            <td>Declining: -2-4 lakh by 2030</td>
+          </tr>
+          <tr>
+            <td>Auto Components</td>
+            <td><strong>MIXED</strong> (growing exports but ICE declining, EV nascent)</td>
+            <td>Mexico, Thailand, China</td>
+            <td class="warn">45%</td>
+            <td>Net neutral (ICE losses offset EV gains)</td>
+          </tr>
+          <tr>
+            <td>Pharmaceuticals</td>
+            <td><strong>WINNING</strong> (generic drug dominance, API reducing China dependency)</td>
+            <td>China (for APIs), Bangladesh</td>
+            <td class="positive">72%</td>
+            <td>+2-3 lakh by 2030</td>
+          </tr>
+          <tr>
+            <td>Defense Manufacturing</td>
+            <td><strong>GROWING</strong> (Make in India, export potential emerging)</td>
+            <td>Domestic capacity building</td>
+            <td class="positive">60%</td>
+            <td>+1.5-2.5 lakh by 2030</td>
+          </tr>
+          <tr>
+            <td>Toys/Consumer Goods</td>
+            <td><strong>ASPIRATIONAL</strong> (huge announcements, limited execution)</td>
+            <td>China still 80%+ global share</td>
+            <td class="negative">18%</td>
+            <td>+50K-1L (marginal)</td>
+          </tr>
+        </table>
+      </div>
+
+      <h3>PLI Scheme: The Honest Accounting</h3>
+      <p>Total PLI outlay: Rs 1.97 lakh crore across 14 sectors. Jobs promised: 60 lakh. Jobs created (as of mid-2025): <span class="warn">8-15 lakh</span> (estimates vary; government doesn't publish consolidated employment data). Cost per job: <span class="num">Rs 13-25 lakh</span> of government incentive per job created. For comparison, MGNREGS creates a job-day at ~Rs 300-350. The PLI is expensive per job but creates FORMAL, higher-quality employment.</p>
+
+      <p>The gap between promise and delivery exists because: (a) PLI incentivizes CAPEX (capital investment), not jobs. A Rs 1,000 Cr factory can be highly automated. (b) Many PLI beneficiaries are import-substitution, not export-creation, so volume doesn't scale as hoped. (c) Implementation lag: land acquisition, environmental clearances, skilling pipeline gaps delay projects 18-36 months.</p>
+
+      <h3>The Automation Race: When Do Robots Cost Less Than Indians?</h3>
+      <p>This is the central question. Industrial robot cost (per unit deployed): ~$35,000-50,000 in 2024. Operating cost: ~$5,000/year. Lifespan: 10-15 years. Amortized cost: ~$8,500-10,000/year per robot for a 3-shift operation.</p>
+
+      <p>Indian factory worker cost: Salary Rs 12,000-18,000/month = Rs 1.4-2.2 lakh/year + PF + ESI + compliance = ~Rs 2-2.8 lakh/year = <span class="num">~$2,400-3,400/year</span>. Wait. Indian labor is STILL 2.5-4x cheaper than a robot?</p>
+
+      <p>Yes. Which is why automation in India is DELAYED compared to China or developed countries. This is actually a temporary employment advantage. The problem: robot costs are falling 15-20% every 2-3 years. Indian wages are rising 8-12% annually. The crossover happens around <span class="warn">2030-2033</span> for assembly work, <span class="warn">2033-2036</span> for quality control, <span class="warn">2035-2038</span> for complex manufacturing. India has a 10-15 year window where human labor maintains cost advantage. After that, robots win on economics.</p>
+
+      <div class="callout callout-blood">
+        <strong>THE MANUFACTURING TRAP FOR A DEVELOPING COUNTRY:</strong> India must: (a) create 1-2 crore manufacturing jobs by 2032, (b) BEFORE robots become cheaper than humans, (c) while ALSO ensuring those workers are skilled enough to work alongside automation. If India moves too fast into automated manufacturing (to be globally competitive), it doesn't create enough jobs. If it moves too slow (to preserve jobs), it loses competitiveness to Vietnam/Bangladesh. Threading this needle is the most important industrial policy challenge of the 2020s. P(India successfully threads the needle) = <span class="warn">35-40%</span>.
+      </div>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> Manufacturing was supposed to be India's answer to "what happens when IT jobs go away?" And it IS creating jobs, real ones, 4-6 lakh per year. But that's a garden hose trying to fill a swimming pool. India needs 15-25 lakh manufacturing jobs per year for a decade to truly absorb the workforce. And the clock is ticking because in 10-12 years, robots will be cheaper than humans for most factory work. India is in a race against robots, and robots don't get tired or ask for raises. If you're betting your employment future on manufacturing, make sure you're learning robot maintenance and programming, not just assembly line work.
+      </div>
+    </div>
+  </div>
+
+  <!-- AGRICULTURE -->
+  <div class="card">
+    <div class="card-head">
+      <span class="card-icon">&#127806;</span>
+      <span class="card-title">3.3 Agriculture: The Invisible Majority Under Climate Stress</span>
+      <span class="card-badge badge-structural">CLIMATE BOMB</span>
+    </div>
+    <div class="card-body">
+      <h3>The Productivity Crisis in One Stat</h3>
+      <p>Agriculture employs <span class="num">42-45%</span> of India's workforce but produces only <span class="num">~15-16%</span> of GDP. This 3:1 ratio (employment share to GDP share) is the single clearest indicator of disguised unemployment. For comparison: services employ ~30% and produce ~55% of GDP. That's productive employment. Agriculture is body-absorption, not value-creation, for the marginal worker.</p>
+
+      <h3>The Climate Employment Time Bomb</h3>
+      <p>By 2035, climate change's employment impact in agriculture:</p>
+      <ul>
+        <li>Crop yield volatility: <span class="negative">+25-35%</span> compared to 2010-2020 baseline (IPCC India projections)</li>
+        <li>Monsoon pattern shifts: 15-20% higher chance of delayed/failed monsoon in rain-dependent regions</li>
+        <li>Groundwater depletion critical: Punjab, Haryana, western UP, parts of TN. ~30-40% of wells going dry</li>
+        <li>Heat stress: number of "too hot to work" days increasing 20-30% in agricultural belt by 2035</li>
+        <li>Coastal salinity ingress: affecting 3-5% of agricultural land in coastal districts</li>
+      </ul>
+
+      <p>Agricultural employment vulnerable to climate by 2035: <span class="negative">3-5 crore workers</span> (15-20% of agricultural workforce). These aren't job losses in the traditional sense. It's land becoming unviable, crops failing consistently, water not available. The work doesn't exist because the natural resource base doesn't support it anymore.</p>
+
+      <h3>The Exit Trajectory</h3>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Year</th><th>Agri Employment (Cr)</th><th>% of Workforce</th><th>Where Exited Workers Go</th></tr>
+          <tr><td>2024</td><td>~25-26 Cr</td><td>42-45%</td><td>Baseline</td></tr>
+          <tr><td>2030</td><td>~21-23 Cr</td><td>35-38%</td><td>Construction (35%), Manufacturing (20%), Gig (25%), Services (10%), Unemployed (10%)</td></tr>
+          <tr><td>2035</td><td>~18-20 Cr</td><td>28-32%</td><td>Climate-stressed additional exit: Gig (40%), Urban informal (30%), Reverse-migrate but underemployed (20%), Green energy (10%)</td></tr>
+          <tr><td>2040</td><td>~15-18 Cr</td><td>22-25%</td><td>Agriculture becomes "commercial farmers + agri-tech integrated + subsistence holdouts." The middle has exited.</td></tr>
+        </table>
+      </div>
+
+      <p>The structural agricultural exit of <span class="num">7-10 crore workers</span> over 16 years (2024-2040) is NECESSARY for development. Every developed country underwent this. The problem: where do they go? In the US (1900-1970), agriculture to manufacturing. In China (1990-2020), rural to urban manufacturing. In India (2024-2040): agriculture to... gig economy? Construction (which is itself automating)? The absorption pathways are far weaker than historical precedent.</p>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> If you're a farmer's child in 2026, here's the brutal truth: you are probably not going to be a farmer in 2040. The math doesn't work. The land doesn't support it. Climate is making it worse. Your path is: migrate to a city and do whatever work you can find (construction, delivery, retail), or get trained in a specific skill (electrician, plumber, healthcare assistant, solar panel technician) that has demand. The dream that your parents' farming life continues is not realistic for 60-70% of farming families. This isn't pessimism. It's arithmetic. The question isn't whether to leave agriculture. It's WHERE you go after.
+      </div>
+    </div>
+  </div>
+
+  <!-- GIG ECONOMY -->
+  <div class="card">
+    <div class="card-head">
+      <span class="card-icon">&#128666;</span>
+      <span class="card-title">3.4 Gig Economy: The Informal Sector's App-Enabled Face</span>
+      <span class="card-badge badge-structural">BUFFER SATURATION</span>
+    </div>
+    <div class="card-body">
+      <h3>The Growth That Isn't</h3>
+      <p>Platform workers in India: <span class="num">77-80 lakh</span> (2024, NITI Aayog). Projected: <span class="num">2.35 crore by 2029-30</span>. That's 3x growth in 5-6 years. Sounds like a success story? Let's dissect.</p>
+
+      <p>Gig economy is absorbing: IT-displaced workers, BPO-displaced workers, agriculture-exited workers, educated unemployed youth who need SOME income. It's a sponge. But sponges saturate.</p>
+
+      <h3>The Earnings Reality</h3>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Platform</th><th>Worker Type</th><th>2024 Avg. Monthly Income</th><th>2028 Projected</th><th>Why Declining?</th></tr>
+          <tr>
+            <td>Swiggy/Zomato Delivery</td>
+            <td>Food delivery partner</td>
+            <td>Rs 15,000-22,000</td>
+            <td>Rs 12,000-18,000</td>
+            <td>Worker oversupply. Per-order payout falling. Algo squeezing.</td>
+          </tr>
+          <tr>
+            <td>Uber/Ola/Rapido</td>
+            <td>Ride driver</td>
+            <td>Rs 18,000-30,000</td>
+            <td>Rs 14,000-24,000</td>
+            <td>More drivers, same demand. Surge pricing less frequent.</td>
+          </tr>
+          <tr>
+            <td>Urban Company</td>
+            <td>Beauty/salon/repair services</td>
+            <td>Rs 12,000-25,000</td>
+            <td>Rs 10,000-20,000</td>
+            <td>Platform commission increasing. Service competition intense.</td>
+          </tr>
+          <tr>
+            <td>Blinkit/Zepto/Instamart</td>
+            <td>10-min grocery delivery</td>
+            <td>Rs 12,000-18,000</td>
+            <td>Rs 10,000-16,000</td>
+            <td>Market consolidating. Survivors squeeze labor costs.</td>
+          </tr>
+          <tr>
+            <td>Freelance Platforms (Upwork, etc.)</td>
+            <td>Digital freelancers</td>
+            <td>Rs 20,000-50,000</td>
+            <td>Rs 15,000-40,000</td>
+            <td>Global competition + AI tools commoditizing basic freelance work.</td>
+          </tr>
+        </table>
+      </div>
+
+      <p>The pattern: gig earnings DECLINE as worker supply increases. When 77 lakh becomes 2.35 crore, per-worker earnings compress. The market for deliveries and rides is not growing 3x. The worker supply is. Result: more workers sharing the same pool of earnings = everyone earns less.</p>
+
+      <h3>Is Gig Economy Employment or Disguised Unemployment?</h3>
+      <p>A delivery partner earning Rs 13,000/month, working 11 hours/day, 6.5 days/week, with zero benefits, zero pension, zero paid leave, zero health insurance, and an algorithm controlling their income is technically "self-employed" in PLFS data. Functionally, this is daily wage labor mediated by an app. The app provides the ILLUSION of formality (UPI payments, GST registration) to what is essentially piece-rate survival work.</p>
+
+      <p>Wealth distribution in gig economy: Platform captures 20-30% of transaction value as commission. Payment gateway, logistics, tech: another 5-10%. Worker gets: <span class="negative">60-75%</span> of end-customer payment. Of that, they spend on bike fuel/maintenance (15-20%), phone and data (5%), leaving net ~50-55% as actual income. For a Rs 500 order, platform takes Rs 100-150, customer pays delivery fee Rs 30-50, worker nets Rs 25-30 for 20-30 minutes of work including wait time. That's Rs 50-90/hour. Minimum wage in most states: Rs 350-450/day (8 hours) = Rs 44-56/hour. Gig workers are earning AROUND minimum wage, not above it, with 10x the risk (vehicle maintenance, fuel, accidents, zero security).</p>
+
+      <div class="callout callout-blood">
+        <strong>THE SATURATION POINT:</strong> Gig economy as unemployment buffer has a ceiling. When too many workers join, per-worker earnings fall below SURVIVAL level. We're approaching this in metros. Bangalore, Mumbai, Delhi delivery earnings per order: <span class="negative">down 15-20%</span> from 2022 to 2024 as worker supply exploded. The buffer is saturating. By 2030, if gig worker count reaches 2.35 crore as NITI Aayog projects, average gig earnings will likely fall to <span class="negative">Rs 10,000-14,000/month</span>, which is BELOW the cost of dignified urban survival. At that point, gig stops being a buffer and becomes a poverty trap with an app.
+      </div>
+
+      <h3>The 2035-2040 Question: Autonomous Delivery</h3>
+      <p>P(autonomous drones/robots displacing 30%+ of delivery workers in India metros by 2035) = <span class="warn">25%</span>. India's infrastructure chaos (narrow lanes, chaotic traffic, theft risk) DELAYS this. By 2040, P rises to 40-45%. The buffer is real but finite. India's bad infrastructure is ironically job-protective for delivery workers. If roads were German-quality, delivery jobs would already be 50% automated.</p>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> If you're a gig worker in 2026, you're not "building a career." You're buying time until you find something better. That's fine as a temporary strategy. It's catastrophic as a 10-year plan. The gig economy in 2026 is like a life raft after a shipwreck. It keeps you alive. But you can't live on a life raft forever. The problem: the rescue ship (formal employment) isn't coming for most people. So millions are just... staying on the raft, indefinitely, while the raft slowly deflates (earnings declining). This is the gig economy in India by 2030.
+      </div>
+    </div>
+  </div>
+
+  <!-- GREEN ECONOMY -->
+  <div class="card">
+    <div class="card-head">
+      <span class="card-icon">&#127811;</span>
+      <span class="card-title">3.5 Green Economy: India's Best Employment Hope</span>
+      <span class="card-badge badge-positive">GENUINE OPPORTUNITY</span>
+    </div>
+    <div class="card-body">
+      <h3>The Positive Employment Story That's Actually Real</h3>
+      <p>This is one sector where the analysis can be genuinely optimistic with data to back it. India's net-zero commitment (2070) and renewable energy targets (500 GW by 2030) create REAL, MEASURABLE employment.</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Sub-Sector</th><th>2024 Employment</th><th>2030 Projection</th><th>2035 Projection</th><th>2040 Projection</th></tr>
+          <tr><td>Solar (manufacturing + installation + maintenance)</td><td>7-9 lakh</td><td>16-22 lakh</td><td>28-35 lakh</td><td>35-45 lakh</td></tr>
+          <tr><td>Wind Energy</td><td>3-4 lakh</td><td>6-9 lakh</td><td>10-14 lakh</td><td>12-16 lakh</td></tr>
+          <tr><td>Green Hydrogen</td><td>&lt;10,000</td><td>2-4 lakh</td><td>8-14 lakh</td><td>15-22 lakh</td></tr>
+          <tr><td>EV Manufacturing + Charging + Servicing</td><td>2-3 lakh</td><td>12-18 lakh</td><td>28-38 lakh</td><td>35-50 lakh</td></tr>
+          <tr><td>Battery Manufacturing</td><td>~50,000</td><td>2-4 lakh</td><td>6-10 lakh</td><td>10-15 lakh</td></tr>
+          <tr><td>Carbon Markets/ESG Advisory</td><td>~15-20,000</td><td>1-2 lakh</td><td>3-5 lakh</td><td>5-8 lakh</td></tr>
+          <tr><td>Climate Adaptation Services</td><td>~50,000</td><td>2-3 lakh</td><td>5-8 lakh</td><td>8-12 lakh</td></tr>
+          <tr style="background:var(--acid-glow);">
+            <td><strong>TOTAL GREEN ECONOMY JOBS</strong></td>
+            <td><strong>13-17 lakh</strong></td>
+            <td><strong>41-62 lakh</strong></td>
+            <td><strong>88-1.24 Cr</strong></td>
+            <td><strong>1.2-1.68 Cr</strong></td>
+          </tr>
+        </table>
+      </div>
+
+      <h3>Why This is Credible (Not Hopium)</h3>
+      <ul>
+        <li>India's renewable capacity is ACTUALLY being built. 180+ GW renewable installed as of 2024, target 500 GW by 2030. This is on track.</li>
+        <li>Solar manufacturing PLI is delivering. Domestic solar panel production scaling. Employment follows.</li>
+        <li>EV transition is HAPPENING. 2W EVs at 6%+ market share, growing fast. 4W lagging but policy push strong.</li>
+        <li>Green hydrogen: India announced National Green Hydrogen Mission with Rs 19,700 Cr outlay. 5 MMT production target by 2030. If achieved, employment follows.</li>
+        <li>Global climate finance: $100B+/year flowing to developing countries. India positioned to capture $10-15B annually for green projects = job creation multiplier.</li>
+      </ul>
+
+      <h3>The Transition Fairness Gap</h3>
+      <p>Fossil fuel sector (coal mining, thermal power plants, petroleum refining, distribution) employs <span class="num">12-16 lakh</span> directly. As coal power phases down (India's coal capacity peaked ~2023-2024), these workers need alternatives. India has NO structured "just transition" framework. P(coal workers displaced without adequate retraining/alternative employment) = <span class="negative">60%</span>. This creates localized employment crises in coal belt regions: Jharkhand, Odisha, Chhattisgarh, Madhya Pradesh, Telangana.</p>
+
+      <div class="callout callout-acid">
+        <strong>P(Green economy becomes TOP-3 employment sector by 2035) = 45%.</strong> If solar target achieved + EV transition accelerates + green hydrogen economics work + just-transition policy implemented, green economy could employ 1+ crore by 2035. This would make it comparable to IT-BPM at its peak and a genuine pillar of Indian employment. The conditions are achievable but require sustained policy commitment through multiple governments. India has a mixed record on multi-government policy continuity. But climate pressure (Paris Agreement, domestic air quality crisis, energy security) creates forcing function for green transition to continue. This is India's BEST employment story of the 2030s.
+      </div>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> If you're 18-22 years old in 2026 and asking "What field has a future?", green energy is the answer. Solar panel installation and maintenance, EV charging infrastructure, battery technology, green hydrogen plants, wind turbine technicians, energy auditing, green building certification, climate adaptation services. These jobs are growing 20-30% per year, they can't be done remotely (local presence required = less global competition), and they can't be fully automated (require human decision-making in variable environments). A solar technician earning Rs 25,000-40,000/month in 2026 will earn Rs 35,000-60,000/month in 2035, have job security, and be in a sector that's GROWING while IT is shrinking. This is the actual smart career move for the median Indian youth.
+      </div>
+    </div>
+  </div>
+
+  <!-- HEALTHCARE -->
+  <div class="card">
+    <div class="card-head">
+      <span class="card-icon">&#127973;</span>
+      <span class="card-title">3.6 Healthcare: The Criminally Under-Invested Opportunity</span>
+      <span class="card-badge badge-positive">MASSIVE OPPORTUNITY</span>
+    </div>
+    <div class="card-body">
+      <h3>The Numbers That Shame Policy</h3>
+      <p>India's doctor-to-population ratio: <span class="num">1:834</span> (2024). WHO recommended: 1:1000 (India meets this). But nurses: <span class="negative">3.07 per 1000</span> (WHO target: 4.45). Allied health workers (physiotherapists, lab techs, optometrists, radiographers, emergency medical technicians): MASSIVE shortage. Estimated deficit: <span class="negative">25-35 lakh workers</span> TODAY, growing to <span class="negative">40-60 lakh</span> by 2035 as India ages and healthcare demand rises.</p>
+
+      <h3>The Employment Opportunity India is Missing</h3>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Role</th><th>Current Workforce</th><th>Needed by 2035</th><th>Gap</th><th>Training Capacity (annual)</th><th>Years to Close Gap</th></tr>
+          <tr><td>Nurses</td><td>~35 lakh</td><td>~55-65 lakh</td><td class="negative">20-30 lakh</td><td>~2-3 lakh/year</td><td>7-10 years</td></tr>
+          <tr><td>Physiotherapists</td><td>~1.5 lakh</td><td>~6-8 lakh</td><td class="negative">4.5-6.5 lakh</td><td>~25,000/year</td><td>15-20 years</td></tr>
+          <tr><td>Lab Technicians</td><td>~6 lakh</td><td>~12-15 lakh</td><td class="negative">6-9 lakh</td><td>~50,000/year</td><td>12-15 years</td></tr>
+          <tr><td>Emergency Medical Technicians</td><td>~50,000</td><td>~5-8 lakh</td><td class="negative">4.5-7.5 lakh</td><td>~15,000/year</td><td>25-30 years</td></tr>
+          <tr><td>Mental Health Counselors</td><td>~25,000</td><td>~3-5 lakh</td><td class="negative">2.75-4.75 lakh</td><td>~8,000/year</td><td>30+ years</td></tr>
+          <tr><td>Home Healthcare Workers (elderly care)</td><td>~8 lakh</td><td>~25-35 lakh</td><td class="negative">17-27 lakh</td><td>~50,000/year</td><td>30+ years</td></tr>
+        </table>
+      </div>
+
+      <p>At current training capacity, India would need <span class="negative">20-30 YEARS</span> to close the healthcare workforce gap. This is not an employment crisis. It's an employment OPPORTUNITY of generational scale that is being criminally under-invested in.</p>
+
+      <h3>Why Healthcare is AI-Resistant (Mostly)</h3>
+      <p>AI AUGMENTS healthcare rather than replacing it. AI diagnostics assist doctors, they don't replace the human who interprets, explains to patient, and makes treatment decisions considering the full context. Administrative AI reduces paperwork. Drug discovery AI accelerates pharma R&D. But patient care, surgery, rehabilitation, mental health, elderly care all require human touch. Net healthcare employment impact of AI by 2035: <span class="positive">POSITIVE (+12-18%)</span>. AI actually CREATES healthcare jobs by: (a) making healthcare more accessible (telemedicine, vernacular AI health advisors), (b) expanding preventive care, (c) enabling more complex procedures at lower cost, increasing demand.</p>
+
+      <p>This is ONE OF THE FEW SECTORS where AI and employment are not in opposition. They're synergistic.</p>
+
+      <div class="callout callout-acid">
+        <strong>IF INDIA ACTS ON THIS:</strong> Healthcare could employ <span class="positive">1.5-2 crore by 2035</span> (from ~1.2 Cr today). These are: (a) Jobs that CANNOT be offshored (you can't do physiotherapy remotely from Vietnam), (b) AI-resistant (human touch required), (c) Growing in demand (aging + rising incomes + health awareness), (d) Accessible to women (nursing, care work socially acceptable), (e) Spread across Tier-2/3 cities, not just metros. This is THE ANSWER to "where do displaced IT/BPO workers go?" IF India invests in training infrastructure at 3-4x current scale. Cost: Rs 25,000-40,000 Cr over 5 years. Compared to PLI's Rs 1.97 lakh crore, this is CHEAP. But healthcare training doesn't create GDP growth headlines the way a semiconductor fab does, so it's politically less sexy. This is policy failure by ignorance.
+      </div>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> If you're looking for a career that has job security in 2040, trains relatively quickly (9 months to 2 years for most allied health roles), pays decently (Rs 20,000-50,000/month depending on role and experience), and genuinely helps people, healthcare is the answer. Not doctor (that's 5.5 years + highly competitive). But nurse, physiotherapist, lab tech, optometry assistant, dental hygienist, mental health counselor, elderly care specialist. India needs MILLIONS of these workers. The jobs exist. The training seats don't. If the government opened 200,000 nursing seats tomorrow, they'd all fill within a year. This is the opposite of the IT problem (too many graduates, not enough jobs). Healthcare is: not enough graduates, abundant jobs.
+      </div>
+    </div>
+  </div>
+
+  <!-- CREATOR ECONOMY -->
+  <div class="card">
+    <div class="card-head">
+      <span class="card-icon">&#127909;</span>
+      <span class="card-title">3.7 Creator Economy: The Vernacular Content Explosion</span>
+      <span class="card-badge badge-high-stakes">MIXED OUTLOOK</span>
+    </div>
+    <div class="card-body">
+      <h3>The Current Landscape</h3>
+      <p>Indians earning primary income from content creation (YouTube, Instagram, freelance writing/video, podcasting, streaming): <span class="num">15-25 lakh</span> (2024). Total earning ANY income part-time: ~80 lakh to 1 crore. By 2030: primary income creators could reach <span class="num">40-65 lakh</span>. By 2035: <span class="num">60-90 lakh</span>.</p>
+
+      <h3>The Vernacular Explosion (Genuine Structural Shift)</h3>
+      <p>Hindi, Tamil, Telugu, Marathi, Bengali, Gujarati, Kannada, Malayalam, Punjabi content consumption growing <span class="positive">30-45% CAGR</span>. English content plateauing. This creates employment across 22 scheduled languages in: video creation, editing, voice-over, writing, translation, subtitling, production, distribution. By 2030, vernacular digital content could employ <span class="positive">50-80 lakh</span> across creation and production. This is REAL and happening.</p>
+
+      <h3>The AI Threat: When Content is Free</h3>
+      <p>When AI generates video, music, images, and text at near-zero cost, what happens to human creators? P(AI-generated content exceeding 50% of online content by 2030) = <span class="warn">50%</span>. Human creators survive through: authenticity (lived experience), personal brand (parasocial relationships), local context (AI struggles with hyperlocal cultural nuance), and live performance (concerts, events, streams where human IS the product).</p>
+
+      <p>But the bottom 60-70% of creators (template content, compilation channels, generic information, basic entertainment) face existential pressure. AI can generate "10 Facts About Taj Mahal" video with voiceover and visuals in 90 seconds. A human creator takes 2 hours. The human can't compete on cost. They can only compete on QUALITY and UNIQUENESS. Most can't.</p>
+
+      <h3>The Earnings Distribution</h3>
+      <p>Top 1% of creators: earning Rs 10 lakh+/month. Top 10%: Rs 50,000-10 lakh/month. Middle 40%: Rs 15,000-50,000/month. Bottom 50%: Rs 3,000-15,000/month (supplementary income, not primary). By 2035, AI compresses the bottom 50% toward zero. The top 20-30% thrives (because they offer what AI can't). The middle 20-30% struggles (AI commoditizing what they do). <strong>Winner-take-most dynamics</strong> apply to creator economy even more than traditional employment.</p>
+
+      <div class="callout callout-gold">
+        <strong>THE CREATOR PARADOX:</strong> Creator economy is simultaneously: (a) A genuine new employment sector employing millions, (b) Winner-take-most where top 10% captures 70-80% of earnings, (c) Saturated with competition (millions trying, few succeeding), (d) AI-vulnerable for bottom tier but AI-enhanced for top tier. It's an opportunity AND a trap. If you have unique talent, lived experience, or charisma, it's viable. If you're "just another gaming channel" or "just another motivational speaker," you're competing with 10 lakh other channels plus AI-generated content. P(median creator earning above median formal sector wage in 2035) = <span class="warn">25%</span>. For most, creator economy is a side hustle, not a career.
+      </div>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> The creator economy in 2026 looks like the gold rush. Everyone hears about the YouTuber making Rs 5 lakh/month and thinks "I can do that." What they don't see: 10,000 YouTubers making Rs 2,000/month. If you have a SPECIFIC talent (you're genuinely funny, you have unique expertise, you're exceptional at storytelling), creator economy is viable. If your plan is "I'll make generic content and monetize with AdSense," you'll earn less than a delivery partner by 2028. The creator economy rewards the top 10% extraordinarily and ignores the bottom 90% completely. Decide which decile you're actually in before quitting your job to become a content creator.
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <p style="text-align:center; color:var(--text-dim); font-size:0.85rem; padding:2rem 0;">
+    <strong style="color:var(--blood);">END OF PART 4</strong><br>
+    AI displacement forensics complete. Sectors dissected.<br>
+    Part 5 continues with Startups + Money/Consumption mechanics
+  </p>
+</div>
+
+<div class="part-footer">
+  <p>KAALCHAKRA Part 4 of 6 | Section 2: AI Tipping Point + Section 3: Sector Deep Dives</p>
+  <p>Sources: NITI Aayog "Roadmap for Job Creation in AI Economy" (with NASSCOM, BCG) | Xpheno Active Tech Jobs Outlook Jan 2026 | NASSCOM Strategic Review | IT sector employment data (STPI, industry reports) | Vineet Nayar (former HCL CEO) statements March 2024 | PLFS 2025 sectoral employment data | ILO Future of Work | McKinsey AI Impact Studies | IPCC India Climate Projections | Ministry of New and Renewable Energy data | EV penetration data (VAHAN, SIAM)</p>
+  <p style="margin-top:0.5rem; color:var(--blood);">DISCLOSURE: Probability-weighted analysis. AI impact estimates carry 40-50% confidence for 2024-2030, 25-35% for 2031-2040.</p>
+</div>
+
+<script>
+function showTab(group, index, btn) {
+  const tabs = document.querySelectorAll(`.tab-content.${group}`);
+  const btns = btn.parentElement.querySelectorAll('.tab-btn');
+  tabs.forEach(t => t.classList.remove('active'));
+  btns.forEach(b => b.classList.remove('active'));
+  tabs[index].classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAALCHAKRA Part 3 — Year-by-Year 2031-2040: The Adaptation Decade</title>
+<style>
+:root {
+  --void: #06060b;
+  --abyss: #0c0c14;
+  --deep: #12121d;
+  --surface: #1a1a28;
+  --elevated: #222235;
+  --border-subtle: #2a2a40;
+  --border-active: #3a3a55;
+  --text-bright: #eaeaf2;
+  --text-primary: #c8c8d8;
+  --text-muted: #8888a0;
+  --text-dim: #555568;
+  --blood: #dc2626;
+  --blood-glow: rgba(220,38,38,0.15);
+  --ember: #ea580c;
+  --ember-glow: rgba(234,88,12,0.12);
+  --gold: #d97706;
+  --gold-glow: rgba(217,119,6,0.12);
+  --acid: #16a34a;
+  --acid-glow: rgba(22,163,74,0.12);
+  --ice: #0ea5e9;
+  --ice-glow: rgba(14,165,233,0.12);
+  --violet: #8b5cf6;
+  --violet-glow: rgba(139,92,246,0.12);
+  --cyan: #06b6d4;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--void); color:var(--text-primary); font-family:'Segoe UI',system-ui,-apple-system,sans-serif; line-height:1.75; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:var(--void); }
+::-webkit-scrollbar-thumb { background:var(--border-subtle); border-radius:3px; }
+
+.frame { max-width:1200px; margin:0 auto; padding:3rem 1.5rem; }
+.sect-eye { font-size:0.65rem; letter-spacing:5px; text-transform:uppercase; color:var(--blood); margin-bottom:0.5rem; }
+.sect-title { font-size:clamp(1.8rem,4vw,2.8rem); font-weight:800; letter-spacing:-1px; color:var(--text-bright); margin-bottom:0.5rem; }
+.sect-desc { font-size:0.95rem; color:var(--text-muted); max-width:700px; margin-bottom:3rem; }
+
+/* Year Blocks */
+.year-block { margin-bottom:3rem; border:1px solid var(--border-subtle); border-radius:12px; overflow:hidden; background:var(--deep); }
+.year-header { display:flex; align-items:center; justify-content:space-between; padding:1.5rem 2rem; cursor:pointer; user-select:none; transition:background 0.3s; }
+.year-header:hover { background:var(--surface); }
+.year-num { font-size:2rem; font-weight:900; letter-spacing:-1px; }
+.year-meta { display:flex; gap:1.5rem; align-items:center; flex-wrap:wrap; }
+.ym-chip { padding:0.3rem 0.8rem; border-radius:6px; font-size:0.7rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+.ym-gdp { background:var(--acid-glow); color:var(--acid); border:1px solid rgba(22,163,74,0.3); }
+.ym-risk-med { background:var(--gold-glow); color:var(--gold); border:1px solid rgba(217,119,6,0.3); }
+.ym-risk-elev { background:var(--ember-glow); color:var(--ember); border:1px solid rgba(234,88,12,0.3); }
+.ym-risk-high { background:var(--blood-glow); color:var(--blood); border:1px solid rgba(220,38,38,0.3); }
+.ym-risk-unc { background:var(--violet-glow); color:var(--violet); border:1px solid rgba(139,92,246,0.3); }
+.year-toggle { font-size:1.3rem; color:var(--text-dim); transition:transform 0.3s; }
+.year-toggle.open { transform:rotate(180deg); }
+.year-body { padding:0 2rem 2rem; display:none; }
+.year-body.open { display:block; animation:fadeIn 0.4s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
+.scorecard { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px; background:var(--border-subtle); border:1px solid var(--border-subtle); border-radius:8px; overflow:hidden; margin:1.5rem 0; }
+.sc-cell { background:var(--abyss); padding:0.8rem; text-align:center; }
+.sc-val { font-size:1.3rem; font-weight:800; }
+.sc-lbl { font-size:0.6rem; text-transform:uppercase; letter-spacing:1.5px; color:var(--text-dim); margin-top:0.2rem; }
+
+h3 { font-size:1.1rem; font-weight:700; color:var(--ice); margin:1.8rem 0 0.7rem; padding-bottom:0.3rem; border-bottom:1px solid var(--border-subtle); }
+h4 { font-size:0.95rem; font-weight:700; color:var(--text-bright); margin:1.2rem 0 0.5rem; }
+p { margin-bottom:0.7rem; font-size:0.9rem; }
+ul,ol { margin:0.5rem 0 0.8rem 1.3rem; font-size:0.88rem; color:var(--text-muted); }
+li { margin-bottom:0.35rem; }
+.num { color:var(--gold); font-weight:800; }
+.negative { color:var(--blood); font-weight:700; }
+.positive { color:var(--acid); font-weight:700; }
+.warn { color:var(--ember); font-weight:700; }
+
+.tbl-wrap { overflow-x:auto; margin:1rem 0; border:1px solid var(--border-subtle); border-radius:8px; }
+table { width:100%; border-collapse:collapse; font-size:0.8rem; }
+th { text-align:left; padding:0.6rem 0.8rem; background:rgba(14,165,233,0.06); color:var(--ice); font-weight:700; font-size:0.68rem; text-transform:uppercase; letter-spacing:1px; border-bottom:2px solid var(--border-subtle); white-space:nowrap; }
+td { padding:0.5rem 0.8rem; border-bottom:1px solid rgba(42,42,64,0.4); color:var(--text-muted); vertical-align:top; }
+
+.callout { padding:1rem 1.3rem; border-radius:6px; margin:1.2rem 0; font-size:0.85rem; line-height:1.7; }
+.callout-blood { background:var(--blood-glow); border-left:3px solid var(--blood); }
+.callout-ember { background:var(--ember-glow); border-left:3px solid var(--ember); }
+.callout-gold { background:var(--gold-glow); border-left:3px solid var(--gold); }
+.callout-acid { background:var(--acid-glow); border-left:3px solid var(--acid); }
+.callout-ice { background:var(--ice-glow); border-left:3px solid var(--ice); }
+.callout-street { background:var(--violet-glow); border-left:3px solid var(--violet); color:var(--violet); font-style:italic; }
+.callout strong { color:var(--text-bright); }
+
+.chain { background:var(--abyss); border:1px solid var(--border-subtle); border-radius:8px; padding:1.2rem 1.5rem; margin:1.2rem 0; font-family:'Cascadia Code','Fira Code','Consolas',monospace; font-size:0.72rem; line-height:1.9; color:var(--cyan); overflow-x:auto; white-space:pre; }
+
+.g2 { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:1.2rem; }
+.g3 { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; }
+
+.divider { height:1px; background:linear-gradient(90deg,transparent,var(--border-subtle),transparent); margin:3rem 0; }
+.part-footer { text-align:center; padding:3rem 1.5rem; border-top:1px solid var(--border-subtle); color:var(--text-dim); font-size:0.72rem; }
+
+.decade-overview { background:var(--surface); border:1px solid var(--border-active); border-radius:10px; padding:2rem; margin-bottom:3rem; }
+@media(max-width:768px) { .g2,.g3{grid-template-columns:1fr;} .year-header{flex-wrap:wrap;gap:0.5rem;} .scorecard{grid-template-columns:repeat(3,1fr);} .chain{font-size:0.62rem;padding:0.8rem;} .year-body{padding:0 1.2rem 1.5rem;} }
+</style>
+</head>
+<body>
+
+<div class="frame">
+  <div class="sect-eye">Section 1 &middot; Part 3 of 6</div>
+  <h2 class="sect-title">Year-by-Year: 2031 to 2040 (The Adaptation Decade)</h2>
+  <p class="sect-desc">The decade where India either adapts to the AI-automation-climate convergence or becomes permanently trapped in the Muddling scenario. Every year matters. Click to expand.</p>
+
+  <div class="decade-overview">
+    <h3 style="border:none; margin-top:0;">The 2031-2040 Context</h3>
+    <p>By 2031, the 2024-2030 choices have crystallized into outcomes. The demographic dividend window is closing (working-age population peaks around 2036-2040). AI displacement has already eliminated or restructured 1.2-1.6 crore jobs. The question shifts from "Can India avoid the crisis?" to "Which version of post-crisis India emerges?"</p>
+    <p>The 2030s are defined by three converging mega-forces:</p>
+    <ul>
+      <li><strong>AI maturation:</strong> From narrow task automation to broad cognitive work replacement</li>
+      <li><strong>Climate intensification:</strong> Agriculture under increasing stress, coastal cities facing flood risk, water stress reaching critical</li>
+      <li><strong>Demographic transition:</strong> From youngest major economy to rapidly aging (fertility rate already at 2.0, below replacement)</li>
+    </ul>
+    <p>The years below are probability-weighted projections with decreasing confidence intervals. 2031-2033 (confidence ~40%), 2034-2037 (confidence ~25%), 2038-2040 (confidence ~15%). Treat as scenario explorations, not forecasts.</p>
+  </div>
+
+  <!-- ████████ 2031 ████████ -->
+  <div class="year-block">
+    <div class="year-header" onclick="toggle(this)">
+      <div><span class="year-num" style="color:var(--acid)">2031</span><span style="margin-left:1rem;font-size:0.8rem;color:var(--text-dim)">The New Equilibrium Forming</span></div>
+      <div class="year-meta">
+        <span class="ym-chip ym-gdp">GDP 6.5-7.0%</span>
+        <span class="ym-chip ym-risk-med">RISK: MEDIUM</span>
+        <span class="year-toggle">&#9662;</span>
+      </div>
+    </div>
+    <div class="year-body">
+      <div class="scorecard">
+        <div class="sc-cell"><div class="sc-val" style="color:var(--acid)">6.5-7.0%</div><div class="sc-lbl">GDP Growth</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--gold)">+38-52L</div><div class="sc-lbl">Net Jobs</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--blood)">1.5-1.9 Cr</div><div class="sc-lbl">AI Displacement (cumul.)</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--violet)">$6.5-7T</div><div class="sc-lbl">GDP Size</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--ice)">42-45L</div><div class="sc-lbl">IT Ecosystem Size</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--acid)">42-48L</div><div class="sc-lbl">Green Energy Jobs</div></div>
+      </div>
+
+      <h3>&#9733; The Post-Crisis Stabilization</h3>
+      <p>By 2031, the worst of the 2027-2030 displacement shock has been absorbed (absorbed meaning: people found SOME income, not that they found GOOD jobs). The IT sector reaches a new equilibrium: smaller workforce (<span class="num">42-45 lakh</span> from 55 lakh peak in 2024), but higher-skilled and higher-paid. Revenue per employee: 2x of 2024 levels. The sector is healthier financially but employs far fewer.</p>
+
+      <h3>&#9733; Green Energy Becomes Major Employer</h3>
+      <p>This is the inflection year where green energy transitions from "emerging" to "established" employment sector. Solar, wind, EV ecosystem, green hydrogen, and battery manufacturing collectively employ <span class="positive">42-48 lakh</span>. India's renewable capacity exceeds 300 GW. The sector absorbs workers displaced from fossil fuel industries and agriculture. Average green sector wage: Rs 18,000-35,000/month (semi-skilled to skilled). This is a REAL positive that partially offsets AI displacement.</p>
+
+      <h3>&#9733; Manufacturing Maturity Check</h3>
+      <p>India's manufacturing share of GDP: <span class="num">17-18%</span> (up from 14-15% in 2024). Success but not transformation. China at peak was 32%. Vietnam is at 25%+. India's manufacturing growth is real but insufficient to claim "manufacturing powerhouse" status. Employment in manufacturing: <span class="num">~8.5-9.5 crore</span> (up from ~7-7.5 Cr in 2024). Direction: positive. Magnitude: modest. The jobs created are increasingly in automated facilities requiring higher skills than traditional manufacturing.</p>
+
+      <h3>&#9733; Agriculture Under Climate Stress</h3>
+      <p>By 2031, climate change's employment impact is undeniable. Crop yield volatility has increased 20-30% compared to 2010-2020 baseline. Monsoon patterns shifted. Groundwater depletion critical in Punjab, Haryana, parts of UP and Tamil Nadu. Agriculture's share of employment: <span class="warn">~35-38%</span> (down from 42-45% in 2024). This ~7-8% of workforce (~4-5 crore workers) exited agriculture. Where did they go?</p>
+      <ul>
+        <li>~40% to construction and manufacturing</li>
+        <li>~30% to gig/platform work</li>
+        <li>~15% to rural non-farm enterprises</li>
+        <li>~15% unemployed or disguised unemployment in urban informal sector</li>
+      </ul>
+      <p>The agricultural exit is inevitable and necessary for development. The problem: the sectors absorbing them are themselves under automation pressure.</p>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> 2031 is the year India figures out what "normal" looks like in an AI economy. For a 25-year-old entering the workforce this year, the landscape is: IT jobs exist but demand AI skills you can't learn in college, manufacturing jobs exist but are automated-assisted and pay is capped, green energy is hiring but you need electrical/technical diplomas, and gig work is always available but the earnings are barely survival level. The "great Indian job hunt" in 2031 looks nothing like it did in 2021. It's not just harder. It's a different game with different rules that nobody taught you.
+      </div>
+    </div>
+  </div>
+
+  <!-- ████████ 2032 ████████ -->
+  <div class="year-block">
+    <div class="year-header" onclick="toggle(this)">
+      <div><span class="year-num" style="color:var(--ice)">2032</span><span style="margin-left:1rem;font-size:0.8rem;color:var(--text-dim)">The AI-Skilled vs Non-AI-Skilled Divide Hardens</span></div>
+      <div class="year-meta">
+        <span class="ym-chip ym-gdp">GDP 6.8-7.2%</span>
+        <span class="ym-chip ym-risk-med">RISK: MEDIUM</span>
+        <span class="year-toggle">&#9662;</span>
+      </div>
+    </div>
+    <div class="year-body">
+      <div class="scorecard">
+        <div class="sc-cell"><div class="sc-val" style="color:var(--acid)">6.8-7.2%</div><div class="sc-lbl">GDP Growth</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--gold)">+42-58L</div><div class="sc-lbl">Net Jobs</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--blood)">1.9-2.4 Cr</div><div class="sc-lbl">AI Displacement (cumul.)</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--acid)">48-55%</div><div class="sc-lbl">Female LFPR</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--acid)">3.5-4 Cr</div><div class="sc-lbl">AI-Native Job Roles</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--gold)">$7.5-8T</div><div class="sc-lbl">GDP Size</div></div>
+      </div>
+
+      <h3>&#9733; The Skill Divide Becomes Permanent Class Divide</h3>
+      <p>By 2032, India's labor market has fully bifurcated into AI-skilled and non-AI-skilled, and the wage gap between the two is staggering:</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Skill Category</th><th>Workforce Size</th><th>Median Monthly Income</th><th>Mobility (Can Switch to AI-skilled?)</th></tr>
+          <tr><td>AI-native workers (data science, ML, AI engineering)</td><td>~80-100L</td><td>Rs 80,000-2,00,000</td><td>High within category</td></tr>
+          <tr><td>AI-augmented workers (professionals using AI)</td><td>~1.5-2 Cr</td><td>Rs 35,000-80,000</td><td>Moderate (upskilling possible)</td></tr>
+          <tr><td>AI-resistant workers (trades, physical complex work)</td><td>~3-4 Cr</td><td>Rs 18,000-40,000</td><td>Low (different domain)</td></tr>
+          <tr><td>AI-displaced workers (doing survival work)</td><td>~8-10 Cr</td><td>Rs 8,000-18,000</td><td>Very low (age, education barriers)</td></tr>
+          <tr><td>Traditional informal (unchanged by AI)</td><td>~40-45 Cr</td><td>Rs 6,000-15,000</td><td>Near zero</td></tr>
+        </table>
+      </div>
+
+      <p>The gap between the top tier (AI-native) and bottom tier (traditional informal) is <span class="negative">15-30x</span> in monthly income. This is not a temporary transition gap. By 2032, this is the STRUCTURE of India's labor market. The social mobility that defined India's post-1991 story (a rikshawala's son becoming an engineer) faces its hardest test: can the rikshawala's grandson become an AI engineer? Or is that ladder now gone?</p>
+
+      <h3>&#9733; Female LFPR: The Positive Momentum Story</h3>
+      <div class="callout callout-acid">
+        <strong>GENUINE STRUCTURAL POSITIVE:</strong> By 2032, female LFPR reaches <span class="positive">48-55%</span> (from 40% in 2025). This improvement is driven by: (a) Remote/hybrid work normalization post-COVID sustained, (b) Gig economy's flexibility enabling women to work around household responsibilities, (c) Green energy and healthcare (both female-friendly sectors) scaling, (d) Education: more women graduating with technical degrees, (e) Social norm shifts in Tier-2/3 cities. The improvement adds an estimated <span class="positive">$200-300B to GDP annually</span> by 2032. This is India's BIGGEST untapped employment lever partially deployed. Still below global average but the trajectory is genuinely positive.
+      </div>
+
+      <h3>&#9733; The EV Transition Completes</h3>
+      <p>India's EV penetration crosses 30% of new vehicle sales. The transition's employment impact by 2032:</p>
+      <ul>
+        <li>ICE (petrol/diesel vehicle) manufacturing: <span class="negative">-8-12 lakh jobs</span> from 2024 peak</li>
+        <li>EV manufacturing, battery, charging infrastructure: <span class="positive">+15-20 lakh jobs</span> created new</li>
+        <li>Net: <span class="positive">+5-8 lakh</span>, but with critical caveat: the jobs lost (ICE) and gained (EV) are in different locations and require different skills. An ICE engine mechanic in Faridabad doesn't automatically become an EV battery technician. The transition is net-positive numerically but PAINFUL individually.</li>
+      </ul>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> 2032 is the year where having AI skills isn't just a career advantage, it's the difference between middle class and working poor. A 28-year-old Python developer who learned prompt engineering and AI workflow design in 2026-2028 is earning Rs 1.2 lakh/month. Their batchmate who stayed in manual Java testing is earning Rs 18,000/month or has already exited IT entirely. Same college, same batch, graduating just 6 years ago. The divergence happened in 4 years. This is the new reality of India's labor market: your skills don't depreciate slowly anymore, they cliff-dive.
+      </div>
+    </div>
+  </div>
+
+  <!-- ████████ 2033 ████████ -->
+  <div class="year-block">
+    <div class="year-header" onclick="toggle(this)">
+      <div><span class="year-num" style="color:var(--gold)">2033</span><span style="margin-left:1rem;font-size:0.8rem;color:var(--text-dim)">The Middle-Class Career Anxiety Crisis</span></div>
+      <div class="year-meta">
+        <span class="ym-chip ym-gdp">GDP 6.5-7.0%</span>
+        <span class="ym-chip ym-risk-elev">RISK: ELEVATED</span>
+        <span class="year-toggle">&#9662;</span>
+      </div>
+    </div>
+    <div class="year-body">
+      <div class="scorecard">
+        <div class="sc-cell"><div class="sc-val" style="color:var(--acid)">6.5-7.0%</div><div class="sc-lbl">GDP Growth</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--gold)">+35-48L</div><div class="sc-lbl">Net Jobs</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--blood)">2.4-2.9 Cr</div><div class="sc-lbl">AI Displacement (cumul.)</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--warn)">Gini 0.42-0.45</div><div class="sc-lbl">Inequality Index</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--ice)">+1-1.5%</div><div class="sc-lbl">Real Wage (median)</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--violet)">India #3?</div><div class="sc-lbl">GDP Rank vs Germany</div></div>
+      </div>
+
+      <h3>&#9733; The "Safe" Professions Face Their Reckoning</h3>
+      <p>2033 is when the Indian middle class's belief in "forever secure" professions faces data-driven reality checks. AI has matured from automating clerical work to encroaching on judgment-based professional work:</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Profession</th><th>2024 Middle-Class Belief</th><th>2033 Reality</th><th>Employment Impact</th></tr>
+          <tr>
+            <td><strong>Chartered Accountancy</strong></td>
+            <td>"Regulatory complexity = job security forever"</td>
+            <td>AI handles tax compliance, audit trails, GST filing for 80%+ of cases. CA firms reduce headcount 30-40%. Only complex advisory survives.</td>
+            <td><span class="negative">-40,000-60,000 CA firm positions</span></td>
+          </tr>
+          <tr>
+            <td><strong>Mid-level Management</strong></td>
+            <td>"AI can't manage people"</td>
+            <td>AI handles scheduling, performance analytics, resource allocation. Middle management layer compressed. Span of control per senior manager increases 3-4x.</td>
+            <td><span class="negative">-5-8 lakh mid-manager roles across sectors</span></td>
+          </tr>
+          <tr>
+            <td><strong>Financial Advisors (mass market)</strong></td>
+            <td>"People trust humans with money"</td>
+            <td>Robo-advisory with vernacular AI handles 70%+ of non-HNI financial planning. Human advisors needed only for HNI/complex cases.</td>
+            <td><span class="negative">-1.5-2 lakh advisor positions</span></td>
+          </tr>
+          <tr>
+            <td><strong>Teaching (K-12)</strong></td>
+            <td>"Children need human teachers"</td>
+            <td>AI tutors for personalized learning. Teachers' role shifts from instruction to mentoring. Student-teacher ratios increase. Not elimination but restructuring.</td>
+            <td><span class="warn">-3-5 lakh teaching positions (through attrition, not firing)</span></td>
+          </tr>
+          <tr>
+            <td><strong>Architecture (standard projects)</strong></td>
+            <td>"Creative profession is safe"</td>
+            <td>AI generates building designs, handles code compliance. Junior architects face 50%+ displacement. Senior architects become AI-output editors.</td>
+            <td><span class="negative">-30,000-50,000 junior architect positions</span></td>
+          </tr>
+        </table>
+      </div>
+
+      <h3>&#9733; The Psychological Crisis</h3>
+      <p>Families that invested Rs 25-50 lakh in professional education (engineering, CA, MBA, medical except clinical) in 2020-2025 are seeing ROI collapse by 2033. A CA who graduated in 2028 faces a market that values AI-augmented tax tech over traditional CA skills. An MBA who graduated in 2025 spent Rs 20-30 lakh on a degree that qualified them for a role that AI now handles. The psychological impact when an entire middle-class generation realizes the degrees their parents sacrificed for are devaluing in real-time: <span class="negative">this is a social event, not just economic</span>.</p>
+
+      <p>P(significant middle-class career anxiety reaching crisis levels by 2033) = <span class="num">60%</span>. Manifestations: surge in mental health issues, decline in professional course enrollments, brain drain acceleration among those who CAN leave, political radicalization among those who CAN'T.</p>
+
+      <h3>&#9733; But Also: India Might Be World's 3rd Largest Economy</h3>
+      <p>If India sustains 6.5-7% growth 2026-2033, it overtakes Germany to become the world's 3rd largest economy (after US and China). GDP: $8-9 trillion. This milestone matters for: geopolitical standing, access to global capital, negotiating power in trade, and national pride. But with per capita income still around <span class="warn">$4,500-5,500</span> (ranking ~120-130th globally), India is the world's 3rd largest economy that feels like a middle-income country to its citizens. The aggregate-vs-individual disconnect is the defining tension.</p>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> 2033 is the year India's parents stop telling their children "become a CA/engineer/MBA and you'll be set for life." That advice worked for 40 years (1980-2020). It broke somewhere between 2025-2033. The new advice is: "learn AI, learn English, learn to adapt every 3 years, and have a backup plan for your backup plan." This mental model shift is brutal for a generation raised on stability narratives.
+      </div>
+    </div>
+  </div>
+
+  <!-- ████████ 2034 ████████ -->
+  <div class="year-block">
+    <div class="year-header" onclick="toggle(this)">
+      <div><span class="year-num" style="color:var(--ember)">2034</span><span style="margin-left:1rem;font-size:0.8rem;color:var(--text-dim)">The Robotics Inflection in Physical Work</span></div>
+      <div class="year-meta">
+        <span class="ym-chip ym-gdp">GDP 6.2-6.8%</span>
+        <span class="ym-chip ym-risk-high">RISK: HIGH</span>
+        <span class="year-toggle">&#9662;</span>
+      </div>
+    </div>
+    <div class="year-body">
+      <div class="scorecard">
+        <div class="sc-cell"><div class="sc-val" style="color:var(--gold)">6.2-6.8%</div><div class="sc-lbl">GDP Growth</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--ember)">+28-42L</div><div class="sc-lbl">Net Jobs</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--blood)">2.9-3.5 Cr</div><div class="sc-lbl">AI+Robot Displacement</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--blood)">15-25%</div><div class="sc-lbl">Construction Robotics</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--blood)">30-40%</div><div class="sc-lbl">Warehouse Automation</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--violet)">20-30%</div><div class="sc-lbl">Autonomous Delivery (metros)</div></div>
+      </div>
+
+      <h3>&#9733; Physical Work Faces Automation: The Last Employment Bastion Under Pressure</h3>
+      <p>2034 is when robotics costs reach parity with Indian manual labor for specific tasks. Not all physical work, but enough to matter:</p>
+
+      <h4>Construction Sector</h4>
+      <p>Construction employs ~5.5-6 crore (largest blue-collar employer after agriculture). By 2034, robotics penetration in specific tasks:</p>
+      <ul>
+        <li>Bricklaying robots in high-rise construction: <span class="num">10-15%</span> adoption in metro projects</li>
+        <li>3D-printed buildings for standardized low-cost housing: pilot to commercial transition</li>
+        <li>Demolition and excavation: automation reaching 25-30%</li>
+        <li>Overall construction employment: net stable due to continued infrastructure demand, but PER-PROJECT employment down 15-20%</li>
+      </ul>
+
+      <h4>Warehousing & Logistics</h4>
+      <p>Amazon, Flipkart, Reliance: warehouse automation (robots picking, packing, sorting) reaches 30-40% penetration. E-commerce warehouse employment: <span class="negative">down 25-30%</span> from peak despite order volumes growing. The workers displaced: mostly semi-literate, 25-45 years old, limited alternative employment options.</p>
+
+      <h4>Last-Mile Delivery</h4>
+      <p>Autonomous delivery drones and ground robots pilot in Bangalore, Hyderabad, Delhi gated communities. Penetration: <span class="num">5-10%</span> of total deliveries in metros (India's chaotic roads delay this). But the DIRECTION is set. Delivery workers, who absorbed millions of displaced formal sector workers in 2024-2030, now face their own displacement pressure. The sponge that absorbed earlier shocks is itself being squeezed.</p>
+
+      <h3>&#9733; The Climate Employment Shock</h3>
+      <p>2034 might be the year climate change crosses from "slow pressure" to "acute shock" for employment. Probability of major climate-related crop failure or water crisis affecting 2+ crore agricultural livelihoods: <span class="warn">25-30%</span>. If this happens, rural-to-urban migration surges, cities already stressed by automation face additional labor supply, wages in informal urban work collapse further, and the government faces simultaneous agricultural relief and urban unemployment crises.</p>
+
+      <div class="callout callout-blood">
+        <strong>THE 2034 SCENARIO NOBODY WANTS:</strong> If construction robotics, warehouse automation, and climate shock converge in the same year, India loses 2-3 crore employment-days in blue-collar work while simultaneously receiving 80-100 lakh additional workers from climate-stressed agriculture. This creates a labor market crash in the informal sector. Wages could fall 20-30% in urban daily labor markets. P(this perfect storm) = <span class="negative">12%</span>. Low probability but catastrophic impact. This is the year that determines whether Scenario C (Fracture India) becomes reality.
+      </div>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> 2034 is the year the construction worker, the warehouse packer, the delivery partner, all the people who absorbed the IT and services sector displaced in 2024-2030, all start asking: "Where do WE go now?" And there's no easy answer. The informal sector absorbed them. But the informal sector itself is now under automation pressure. The ladder had three rungs: formal sector, informal sector, agriculture. Now all three rungs are under pressure. Where's the fourth rung? Nobody knows yet.
+      </div>
+    </div>
+  </div>
+
+  <!-- ████████ 2035 ████████ -->
+  <div class="year-block">
+    <div class="year-header" onclick="toggle(this)">
+      <div><span class="year-num" style="color:var(--blood)">2035</span><span style="margin-left:1rem;font-size:0.8rem;color:var(--text-dim)">The Last Year to Correct Before Demographic Reversal</span></div>
+      <div class="year-meta">
+        <span class="ym-chip ym-gdp">GDP 5.8-6.5%</span>
+        <span class="ym-chip ym-risk-high">RISK: CRITICAL</span>
+        <span class="year-toggle">&#9662;</span>
+      </div>
+    </div>
+    <div class="year-body">
+      <div class="scorecard">
+        <div class="sc-cell"><div class="sc-val" style="color:var(--ember)">5.8-6.5%</div><div class="sc-lbl">GDP Growth</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--ember)">+25-40L</div><div class="sc-lbl">Net Jobs</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--blood)">3.5-4.2 Cr</div><div class="sc-lbl">AI+Robot Displacement</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--warn)">Working-age Peak</div><div class="sc-lbl">Demographic Moment</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--violet)">25-30%?</div><div class="sc-lbl">Households on Transfers</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--blood)">?</div><div class="sc-lbl">UBI Decision Year?</div></div>
+      </div>
+
+      <h3>&#9733; The Demographic Dividend Window: CLOSING</h3>
+      <p>India's working-age population (15-64) reaches its peak around 2035-2037 and then begins slowly aging. The dependency ratio (dependents per 100 workers) bottoms out and then starts RISING. The Azim Premji University SWI 2026 report explicitly warns: "India is approaching the end of its demographic dividend by 2040."</p>
+
+      <p>By 2035, if India has NOT leveraged the demographic dividend to build: (a) a productive, well-employed workforce, (b) infrastructure, (c) social security systems, (d) sufficient national wealth, then India faces the nightmarish scenario of <span class="negative">"growing old before growing rich."</span> This happened to: Argentina (middle-income trap + aging), Brazil (partial), Russia (population decline). The difference: these countries had MUCH smaller populations. India attempting to manage old-age dependency for 1.5 billion people while still being a middle-income country is unprecedented in human history.</p>
+
+      <div class="callout callout-blood">
+        <strong>THE 2035 VERDICT:</strong> This is the LAST year to meaningfully shift trajectory before demographic structure itself becomes a constraint. After 2035, working-age population growth slows, then reverses by 2045-2050. If India arrives at this demographic inflection still carrying 25-30% real unemployment/underemployment, with 85%+ informality, and without robust social security, the 2040s and 2050s will be BRUTAL. P(India successfully navigates this transition) based on 2024-2035 trajectory = <span class="negative">30-35%</span>. The baseline case is India enters old-age transition while still wrestling with poverty and employment deficits.
+      </div>
+
+      <h3>&#9733; The UBI Debate Reaches Decision Point</h3>
+      <p>By 2035, automation has visibly displaced 3.5-4.2 crore workers cumulative from 2024. Social pressure for Universal Basic Income reaches political critical mass. The debate that was academic in 2024 is now a legislative battle in 2035.</p>
+
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>UBI Proposal</th><th>Coverage</th><th>Annual Cost</th><th>% of GDP (2035 est.)</th><th>Political Probability</th></tr>
+          <tr><td>Rs 2,000/month to bottom 30%</td><td>~22 Cr adults</td><td>Rs 5.3 lakh Cr</td><td>~1.3%</td><td class="positive">55%</td></tr>
+          <tr><td>Rs 3,000/month to bottom 50%</td><td>~38 Cr adults</td><td>Rs 13.7 lakh Cr</td><td>~3.4%</td><td class="warn">35%</td></tr>
+          <tr><td>Rs 5,000/month to all adults</td><td>~75 Cr adults</td><td>Rs 45 lakh Cr</td><td>~11%</td><td class="negative">8%</td></tr>
+        </table>
+      </div>
+
+      <p>The most likely path: India implements a UBI-like structure by expanding PM-KISAN (currently Rs 6,000/year to farmers) to Rs 18,000-24,000/year and extending eligibility to non-farm rural households below poverty line. Call it "PM-JAN-AADHAR" or similar. Not universal, but covering bottom 30-40%. Cost: manageable at ~1.5-2% of GDP if other subsidies are rationalized. P(some form of expanded direct cash transfer program in place by 2035) = <span class="num">60%</span>.</p>
+
+      <h3>&#9733; Agriculture Reaches Critical Adaptation Point</h3>
+      <p>By 2035, agriculture employs <span class="num">28-32%</span> of workforce (down from 42% in 2024). Those remaining are either: (a) large commercial farmers (top 10% of farmers), (b) subsistence farmers with no alternative (bottom 40%), or (c) agri-tech integrated farmers (middle 50%, using AI, precision farming, contract farming). The traditional "small farmer in rain-fed area" model is economically nonviable in large parts of India by 2035. Migration is the only option, but cities don't have jobs for them.</p>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> 2035 is the year a 50-year-old Indian looks back and realizes: "The economic world my parents lived in is completely gone." Their father could be a clerk and support a family of 5 with dignity. By 2035, a clerk position doesn't exist (AI handles it), or if it does, it pays less in real terms than it did in 2005. The social contract that said "get an education, get a stable job, build a life" has been rewritten to "constantly upgrade your skills, accept insecurity as permanent, and hope you're not in the next displacement wave." And nobody TOLD them this contract changed. They just woke up one day and it had.
+      </div>
+    </div>
+  </div>
+
+  <!-- ████████ 2036 ████████ -->
+  <div class="year-block">
+    <div class="year-header" onclick="toggle(this)">
+      <div><span class="year-num" style="color:var(--violet)">2036</span><span style="margin-left:1rem;font-size:0.8rem;color:var(--text-dim)">The New Economic Model Test</span></div>
+      <div class="year-meta">
+        <span class="ym-chip ym-gdp">GDP 6.0-7.0%</span>
+        <span class="ym-chip ym-risk-elev">RISK: SCENARIO-DEPENDENT</span>
+        <span class="year-toggle">&#9662;</span>
+      </div>
+    </div>
+    <div class="year-body">
+      <div class="scorecard">
+        <div class="sc-cell"><div class="sc-val" style="color:var(--gold)">6.0-7.0%</div><div class="sc-lbl">GDP Growth (range)</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--gold)">+28-48L</div><div class="sc-lbl">Net Jobs (range)</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--blood)">4.0-4.8 Cr</div><div class="sc-lbl">Total Displacement</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--violet)">$9-10T</div><div class="sc-lbl">GDP Size</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--ice)">65-72 Cr?</div><div class="sc-lbl">Total Employed</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--violet)">New Normal</div><div class="sc-lbl">Economic Model</div></div>
+      </div>
+
+      <h3>&#9733; What Does a Job Mean in 2036?</h3>
+      <p>By 2036, the very definition of "employment" has shifted. The traditional 9-to-5, single-employer, 30-year-career model is now the MINORITY experience (affecting <span class="num">~15-20%</span> of workforce: government employees, senior corporate, specialized professionals). For the majority, work is:</p>
+      <ul>
+        <li><strong>Portfolio careers:</strong> 2-3 parallel income streams (full-time + freelance + gig + micro-business)</li>
+        <li><strong>Project-based:</strong> Working on 3-6 month contracts, then finding next contract</li>
+        <li><strong>AI-augmented:</strong> Every knowledge worker uses AI as co-pilot. Those who don't are unemployable</li>
+        <li><strong>Skill-refresh cycles:</strong> Major reskilling every 3-4 years is the norm, not exception</li>
+        <li><strong>Government-supplemented:</strong> 25-35% of households receive some direct transfer (PM schemes) as income supplement</li>
+      </ul>
+
+      <h3>&#9733; The Care Economy Emerges as Major Employer</h3>
+      <p>One genuinely positive employment sector: the care economy. As India begins aging (slowly), demand for: elderly care, healthcare services, rehabilitation, mental health services, disability support, and childcare grows significantly. These are AI-resistant (human touch required) and labor-intensive. By 2036, the care economy employs an estimated <span class="positive">2.5-3.5 crore</span> (up from ~1-1.5 Cr in 2024). Average wage: Rs 15,000-35,000/month. This is a REAL new employment category that didn't exist at scale in 2024.</p>
+
+      <h3>&#9733; The Manufacturing Reality Check</h3>
+      <p>India's manufacturing employs ~9-10 crore by 2036 (up from ~7-7.5 Cr in 2024). Share of GDP: <span class="num">18-19%</span>. This is success, but not the transformation hoped for. The problem: manufacturing employment per unit of output has declined 25-30% due to automation. India is producing more manufactured goods but with fewer workers per rupee of output. The sector that was supposed to absorb hundreds of millions has absorbed tens of millions. It matters, but it's not the solution.</p>
+
+      <div class="callout callout-gold">
+        <strong>THE 2036 BALANCE SHEET:</strong>
+        <ul>
+          <li>Positives: Green energy (60-75L jobs), care economy (2.5-3.5 Cr), GCCs (30-35L), healthcare (1.2-1.5 Cr), manufacturing (net +2-2.5 Cr vs 2024), female LFPR improvement (50%+), direct transfers providing income floor</li>
+          <li>Negatives: IT sector permanently smaller (38-42L vs 55L peak), BPO nearly extinct (90% displaced), 4+ Cr cumulative AI displacement, construction under robot pressure, gig economy saturated with declining per-worker earnings</li>
+          <li>Net: India is creating alternative employment pathways but at INSUFFICIENT scale to fully offset displacement. The gap is being managed through informalization + transfers, not solved.</li>
+        </ul>
+      </div>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> 2036 is the year a 22-year-old entering the workforce expects to have 6-8 different "careers" across their working life (not jobs, but careers). They expect to retrain completely 4-5 times. They expect the government to provide some basic income supplement. They expect AI to be a co-worker, not a tool. And they expect life to be economically harder than their parents', even though "India's economy" is 3x larger than when their parents started working. The macro and micro have fully decoupled.
+      </div>
+    </div>
+  </div>
+
+  <!-- ████████ 2037-2038 COMBINED ████████ -->
+  <div class="year-block">
+    <div class="year-header" onclick="toggle(this)">
+      <div><span class="year-num" style="color:var(--ice)">2037-2038</span><span style="margin-left:1rem;font-size:0.8rem;color:var(--text-dim)">Stabilization or Stagnation?</span></div>
+      <div class="year-meta">
+        <span class="ym-chip ym-gdp">GDP 6.5-7.2%</span>
+        <span class="ym-chip ym-risk-med">RISK: MEDIUM</span>
+        <span class="year-toggle">&#9662;</span>
+      </div>
+    </div>
+    <div class="year-body">
+      <div class="scorecard">
+        <div class="sc-cell"><div class="sc-val" style="color:var(--acid)">6.5-7.2%</div><div class="sc-lbl">GDP Growth (range)</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--gold)">+35-60L/yr</div><div class="sc-lbl">Net Jobs (annual)</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--blood)">4.8-5.8 Cr</div><div class="sc-lbl">Total Displaced (2024-38)</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--violet)">$10-12T</div><div class="sc-lbl">GDP Size</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--ice)">68-75 Cr</div><div class="sc-lbl">Total Employed</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--gold)">New Normal</div><div class="sc-lbl">Phase</div></div>
+      </div>
+
+      <h3>&#9733; 2037-2038: The Adaptation Phase</h3>
+      <p>These are transition years where India either stabilizes into a functional new economic model or stagnates into permanent two-tier reality. The framing depends entirely on which 2030 scenario path was taken.</p>
+
+      <h4>If Scenario A Path (Leapfrog): P = 28%</h4>
+      <div class="callout callout-acid">
+        <p>By 2037-38, India has successfully transitioned. GDP: $11-12T. Manufacturing: 20%+ of GDP. Green economy: top-3 employer. AI displacement was matched by AI-native job creation. Education system reformed (NEP graduates now entering workforce). Female LFPR: 52%+. Real wages growing 3-4% annually for median worker. Social security coverage: 40%+ of workforce. Infrastructure world-class in top-30 cities. This India is globally competitive, domestically inclusive, and on track to become a developed nation by 2047.</p>
+      </div>
+
+      <h4>If Scenario B Path (Muddling): P = 52%</h4>
+      <div class="callout callout-gold">
+        <p>By 2037-38, India has managed but not thrived. GDP: $9-10T. Two-speed economy fully entrenched. Top 20% living first-world lives in gated communities, serviced by AI and a service underclass. Bottom 60% navigating informal economy + gig work + government transfers. Inequality Gini: 0.44-0.48 (higher than 2024). Cities: massive infrastructure strain. Social security: expanded to ~25% coverage but inadequate. Education: improved at top, stagnant at bottom. Political system: populist transfers permanent, structural reform delayed. This India is stable but not dynamic. Growth continues but doesn't lift the base.</p>
+      </div>
+
+      <h4>If Scenario C Path (Fracture): P = 20%</h4>
+      <div class="callout callout-blood">
+        <p>By 2037-38, India faces systemic stress. GDP: $7-8T (below potential). Unemployment crisis has become permanent feature. IT collapse cascaded into broader services. Manufacturing didn't achieve scale. Climate shocks devastated agriculture. Government fiscal capacity exhausted by transfers and crisis management. Real unemployment: 25-30%. Social unrest periodic. Regional separatist economics strengthening. Political system cycling through populist governments unable to implement structural solutions. This India is NOT collapsed (too large, too resilient), but stuck in a middle-income trap with old-country problems emerging.</p>
+      </div>
+
+      <h3>&#9733; New Job Categories That Define 2037-38</h3>
+      <p>Regardless of scenario, certain job categories that barely existed in 2024 are now major employers:</p>
+      <ul>
+        <li><strong>AI-Human Workflow Coordinators:</strong> 8-12 lakh. Designing and managing processes where AI and humans collaborate</li>
+        <li><strong>Digital Identity and Data Sovereignty Managers:</strong> 3-5 lakh. Managing personal data, algorithmic fairness, digital rights</li>
+        <li><strong>Elderly Care Professionals:</strong> 15-20 lakh. As aging begins, care demand spikes</li>
+        <li><strong>Climate Adaptation Specialists:</strong> 5-8 lakh. Flood management, drought-resistant agriculture, heat-stress urban planning</li>
+        <li><strong>Micro-Entrepreneurship Platform Managers:</strong> 10-15 lakh. Running AI-enabled micro-businesses (one-person AI-augmented companies)</li>
+        <li><strong>Vernacular Content Creators (AI-assisted):</strong> 12-18 lakh. Creating for 22 language markets</li>
+        <li><strong>Mental Health and Meaning Counselors:</strong> 2-4 lakh. Addressing existential crisis of purpose in automated economy</li>
+      </ul>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> 2037-2038 is when India's employment reality looks COMPLETELY different from 2024 but somehow also feels familiar. There are still jobs. People are still working. Money is still flowing. But the TYPE of work, the SECURITY of that work, the MEANING of that work, all have fundamentally changed. A 30-year-old in 2038 has never known stable employment in the way their parents understood it. For them, hustling 3 income streams while receiving Rs 2,000/month government transfer while using AI to manage a side business is just... normal. They don't call it a crisis. They call it Tuesday.
+      </div>
+    </div>
+  </div>
+
+  <!-- ████████ 2039 ████████ -->
+  <div class="year-block">
+    <div class="year-header" onclick="toggle(this)">
+      <div><span class="year-num" style="color:var(--acid)">2039</span><span style="margin-left:1rem;font-size:0.8rem;color:var(--text-dim)">Pre-2040: The Trajectory is Visible</span></div>
+      <div class="year-meta">
+        <span class="ym-chip ym-gdp">GDP 6.5-7.5%</span>
+        <span class="ym-chip ym-risk-med">RISK: MEDIUM</span>
+        <span class="year-toggle">&#9662;</span>
+      </div>
+    </div>
+    <div class="year-body">
+      <div class="scorecard">
+        <div class="sc-cell"><div class="sc-val" style="color:var(--acid)">6.5-7.5%</div><div class="sc-lbl">GDP Growth</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--gold)">+40-65L</div><div class="sc-lbl">Net Jobs</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--blood)">5.5-6.5 Cr</div><div class="sc-lbl">Total Displacement (cumul.)</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--violet)">$11-13T</div><div class="sc-lbl">GDP Size</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--acid)">4.5-5 Cr</div><div class="sc-lbl">AI-Native Workforce</div></div>
+        <div class="sc-cell"><div class="sc-val" style="color:var(--ice)">70-77 Cr</div><div class="sc-lbl">Total Employed</div></div>
+      </div>
+
+      <h3>&#9733; The 2030s Cohort Enters Prime Working Years</h3>
+      <p>The children born in 2015-2020 who grew up entirely in the AI era are now 19-24 years old and entering the workforce. This cohort is DIFFERENT:</p>
+      <ul>
+        <li>AI-native from teenage years (used ChatGPT in school)</li>
+        <li>Never expected stable employment (their parents' experience taught them)</li>
+        <li>Skilled in portfolio income management (learned from watching parents hustle)</li>
+        <li>Comfortable with ambiguity and constant change</li>
+        <li>Lower brand loyalty to education credentials (degree skepticism at all-time high)</li>
+      </ul>
+      <p>This generation might be MORE suited to the 2039 economy than the 2024 generation that is trying to adapt. The question: does India's education system support them or are they succeeding DESPITE the system?</p>
+
+      <h3>&#9733; Infrastructure: India Finally Delivers (Partially)</h3>
+      <p>By 2039, India's 2020s infrastructure investment pays off. Bullet trains operational on 3-4 routes. Metro in 40+ cities. Highway network at 2.5 lakh km+. Port capacity doubled. Digital infrastructure: 95%+ 4G/5G penetration. This infrastructure enables economic activity that was impossible in 2024. Logistics costs down 20-25%. Connectivity enabling remote work from Tier-3 cities. This is a REAL productivity gain that supports employment in second-tier cities.</p>
+
+      <h3>&#9733; The Automation Equilibrium</h3>
+      <p>By 2039, automation is no longer "disrupting" employment. It IS employment. Every job exists in relationship to AI/automation. The categories:</p>
+      <div class="tbl-wrap">
+        <table>
+          <tr><th>Job Type</th><th>% of Workforce</th><th>Description</th><th>Median Income</th></tr>
+          <tr><td>AI-Creators</td><td>~2-3%</td><td>Building AI systems, models, infrastructure</td><td>Rs 1.2-3.5 lakh/month</td></tr>
+          <tr><td>AI-Augmented Professionals</td><td>~12-15%</td><td>Lawyers, doctors, engineers, managers using AI as tool</td><td>Rs 50,000-1.5 lakh/month</td></tr>
+          <tr><td>AI-Coordinators</td><td>~8-10%</td><td>Managing AI-human workflows in operations</td><td>Rs 30,000-70,000/month</td></tr>
+          <tr><td>AI-Resistant Physical Work</td><td>~18-22%</td><td>Complex repairs, construction (non-standard), personal services</td><td>Rs 18,000-40,000/month</td></tr>
+          <tr><td>Care Economy</td><td>~4-5%</td><td>Healthcare, elderly care, childcare, mental health</td><td>Rs 20,000-45,000/month</td></tr>
+          <tr><td>Government/Public Sector</td><td>~3-4%</td><td>Administration, defense, education, healthcare</td><td>Rs 25,000-80,000/month</td></tr>
+          <tr><td>Gig/Platform/Micro-Entrepreneurship</td><td>~15-18%</td><td>Delivery, services, small trade, freelance</td><td>Rs 12,000-25,000/month</td></tr>
+          <tr><td>Agriculture</td><td>~22-25%</td><td>Declining share but still major employer</td><td>Rs 8,000-20,000/month</td></tr>
+          <tr><td>Informal Survival Economy</td><td>~15-20%</td><td>Street vendors, domestic work, casual labor</td><td>Rs 6,000-15,000/month</td></tr>
+        </table>
+      </div>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> 2039 is the year where being "employed" doesn't mean what it meant in 2024. Your grandfather worked 40 years in one bank. Your father worked in 4 companies across 35 years. You will work in 12 different income arrangements across 35 years, and you'll be using the 8th version of AI that didn't exist when you started. And you'll consider this normal because everyone you know lives the same way. The only people with traditional stable careers are government employees, and there are 30 lakh government job aspirants for every 50,000 openings. The stability your grandparents had is now reserved for lottery winners.
+      </div>
+    </div>
+  </div>
+
+  <!-- ████████ 2040 ████████ -->
+  <div class="year-block">
+    <div class="year-header" onclick="toggle(this)">
+      <div><span class="year-num" style="color:var(--violet)">2040</span><span style="margin-left:1rem;font-size:0.8rem;color:var(--text-dim)">The Three Indias Verdict</span></div>
+      <div class="year-meta">
+        <span class="ym-chip ym-risk-unc">SCENARIO-DEPENDENT</span>
+        <span class="year-toggle">&#9662;</span>
+      </div>
+    </div>
+    <div class="year-body">
+      <p style="font-size:1rem; color:var(--text-bright); margin-bottom:1.5rem;">By 2040, India has arrived at one of three destinations. Which one depends on choices made between 2024-2035. The trajectory is locked by 2040. Here is what each India looks like in employment terms:</p>
+
+      <div class="g3">
+        <div class="callout callout-acid">
+          <h4 style="color:var(--acid);">INDIA A: LEAPFROG [P = 28%]</h4>
+          <div class="scorecard" style="margin-top:1rem;">
+            <div class="sc-cell"><div class="sc-val" style="color:var(--acid)">$13-15T</div><div class="sc-lbl">GDP</div></div>
+            <div class="sc-cell"><div class="sc-val" style="color:var(--acid)">78-82 Cr</div><div class="sc-lbl">Employed</div></div>
+            <div class="sc-cell"><div class="sc-val" style="color:var(--acid)">15-18%</div><div class="sc-lbl">Real Unemployment</div></div>
+          </div>
+          <p><strong>Employment structure:</strong> 45%+ in formal/semi-formal work. Manufacturing: 22% of GDP. Green energy: 90-120 lakh employed. Care economy: 4+ crore. AI-native economy: India is a global AI R&D hub (top-3 worldwide). Female LFPR: 54%. Inequality Gini: 0.38-0.40 (improved from 2024).</p>
+          <p><strong>How it happened:</strong> 2025-2030 policy execution succeeded. Manufacturing scaled. Education reform worked. Female participation unlocked. Trade deals secured. Infrastructure delivered. Social safety net built. Political consensus on long-term investment held.</p>
+          <p><strong>Daily life:</strong> A median household earns Rs 65,000-90,000/month (dual income). Dignified life is affordable. Savings rate: 15-20%. Children's education secured. Healthcare accessible. Economic anxiety: low. Social mobility: genuine possibility.</p>
+        </div>
+
+        <div class="callout callout-gold">
+          <h4 style="color:var(--gold);">INDIA B: MUDDLING [P = 52%]</h4>
+          <div class="scorecard" style="margin-top:1rem;">
+            <div class="sc-cell"><div class="sc-val" style="color:var(--gold)">$9-11T</div><div class="sc-lbl">GDP</div></div>
+            <div class="sc-cell"><div class="sc-val" style="color:var(--gold)">68-75 Cr</div><div class="sc-lbl">Employed</div></div>
+            <div class="sc-cell"><div class="sc-val" style="color:var(--ember)">22-26%</div><div class="sc-lbl">Real Unemployment</div></div>
+          </div>
+          <p><strong>Employment structure:</strong> 25-30% in formal work (slight improvement). Manufacturing: 18% of GDP (modest growth). Green energy: 70-85 lakh. Care economy: 3-3.5 crore. AI displacement: managed through informalization + transfers, not solved. Female LFPR: 48%. Inequality Gini: 0.44-0.48 (worsened).</p>
+          <p><strong>How it happened:</strong> Some reforms worked (green energy, GCCs, partial manufacturing success). Others failed (education reform incomplete, social security patchy, political short-termism dominant). India muddled through crises without structural solution.</p>
+          <p><strong>Daily life:</strong> A median household needs 2.5 income streams to reach Rs 45,000-60,000/month. Government transfer supplements 30-35% of households (Rs 1,500-3,000/month). Savings rate: 5-8%. Children's education: compromised (private school only for top 30%). Healthcare: out-of-pocket catastrophic costs common. Economic anxiety: high and permanent. Social mobility: possible but rare.</p>
+        </div>
+
+        <div class="callout callout-blood">
+          <h4 style="color:var(--blood);">INDIA C: FRACTURE [P = 20%]</h4>
+          <div class="scorecard" style="margin-top:1rem;">
+            <div class="sc-cell"><div class="sc-val" style="color:var(--blood)">$7-8T</div><div class="sc-lbl">GDP</div></div>
+            <div class="sc-cell"><div class="sc-val" style="color:var(--blood)">62-68 Cr</div><div class="sc-lbl">Employed</div></div>
+            <div class="sc-cell"><div class="sc-val" style="color:var(--blood)">30-35%</div><div class="sc-lbl">Real Unemployment</div></div>
+          </div>
+          <p><strong>Employment structure:</strong> 15-18% in formal work (declined). Manufacturing: 16% of GDP (failure to scale). IT sector: 30-35 lakh (collapsed). Mass informalization. Government transfers supporting 40-45% of households (fiscally unsustainable). Female LFPR: 44% (stalled). Inequality Gini: 0.50+ (crisis levels).</p>
+          <p><strong>How it happened:</strong> Multiple failures cascaded. IT collapse 2027-2032 wasn't offset. Manufacturing automation arrived faster than labor absorption. Climate shocks severe. Gulf return wave peaked. Immigration doors closed. Political system oscillated between incompetent and populist.</p>
+          <p><strong>Daily life:</strong> A median household survives on Rs 25,000-40,000/month (including government transfer of Rs 3,000-5,000/month). Savings: near-zero. Education: public system only for 60%+, quality collapsed. Healthcare: catastrophic out-of-pocket. Economic anxiety: existential. Social mobility: nearly zero. Political instability: periodic eruptions.</p>
+        </div>
+      </div>
+
+      <h3>&#9733; What Changed Between Scenarios?</h3>
+      <p>The difference between the three Indias is NOT one big decision. It's 50 small ones made between 2025-2035:</p>
+      <ul>
+        <li>Did India invest Rs 50,000 Cr in AI retraining or Rs 5,000 Cr?</li>
+        <li>Did PLI create 2 crore manufacturing jobs or 60 lakh?</li>
+        <li>Did female LFPR policies get infrastructure funding or just speeches?</li>
+        <li>Did education reform get implemented in 70% of states or 20%?</li>
+        <li>Did social security expand to 40% of workforce or stay at 15%?</li>
+        <li>Did green energy get sustained policy support through 3 governments or get politically whipsawed?</li>
+        <li>Did the political system maintain bipartisan consensus on long-term investment or descend into populist bidding wars?</li>
+      </ul>
+      <p>Every decision point had a 30-60% probability of going right. The compound probability of ALL going right: ~28% (Scenario A). The probability of MOST going wrong: ~20% (Scenario C). The probability of SOME working, SOME failing: ~52% (Scenario B).</p>
+
+      <div class="callout callout-ice">
+        <strong>THE 2040 EMPLOYMENT SYNTHESIS:</strong> Regardless of scenario, by 2040 these truths hold:
+        <ul>
+          <li>The demographic dividend has peaked and begun reversing. India's next challenge (2040-2060) is aging, not youth employment.</li>
+          <li>AI has restructured 60-70% of 2024 job categories. Most jobs exist but look completely different.</li>
+          <li>Informality remains high (70-80%) but the NATURE of informal work has changed (AI-enabled micro-entrepreneurship vs pure survival labor).</li>
+          <li>India is the world's 3rd or 4th largest economy but per capita income is still $6,000-9,000 (middle-income, not developed).</li>
+          <li>The social contract has been rewritten: government provides basic income floor for bottom 30-40%, citizens expect constant skill updates, and "career stability" is a museum concept.</li>
+        </ul>
+      </div>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> 2040 is the year you look back from and realize: the life your parents lived is not coming back. The job security, the pension, the single-company career, the predictable income trajectory, all of it is history. The question by 2040 is not "Did we avoid disruption?" We didn't. The question is "Did we build something functional in place of what we lost?" The answer to that question is: depends which India you live in. And by 2040, you KNOW which India you're in. The verdict was delivered. You're living in it.
+      </div>
+    </div>
+  </div>
+
+  <!-- ████████ DECADE SUMMARY TABLE ████████ -->
+  <div class="year-block" style="border-color:var(--border-active);">
+    <div class="year-header" onclick="toggle(this)">
+      <div><span class="year-num" style="color:var(--cyan); font-size:1.5rem;">2031-2040 DECADE SUMMARY TABLE</span></div>
+      <div class="year-meta">
+        <span class="ym-chip" style="background:var(--ice-glow); color:var(--ice); border:1px solid rgba(14,165,233,0.3);">FULL DATA</span>
+        <span class="year-toggle">&#9662;</span>
+      </div>
+    </div>
+    <div class="year-body">
+      <div class="tbl-wrap">
+        <table>
+          <tr>
+            <th>Year</th>
+            <th>GDP Growth</th>
+            <th>GDP Size</th>
+            <th>Net Jobs/yr</th>
+            <th>AI Displc. (cumul.)</th>
+            <th>Real Unemp. (adj.)</th>
+            <th>Phase</th>
+            <th>Risk</th>
+            <th>Key Theme</th>
+          </tr>
+          <tr>
+            <td><strong>2031</strong></td>
+            <td>6.5-7.0%</td>
+            <td>$6.5-7T</td>
+            <td>+38-52L</td>
+            <td>1.5-1.9 Cr</td>
+            <td>~20-22%</td>
+            <td>New Equilibrium</td>
+            <td class="warn">MED</td>
+            <td>IT stabilizes smaller. Green energy scales. Post-crisis adaptation.</td>
+          </tr>
+          <tr>
+            <td><strong>2032</strong></td>
+            <td>6.8-7.2%</td>
+            <td>$7.5-8T</td>
+            <td>+42-58L</td>
+            <td>1.9-2.4 Cr</td>
+            <td>~19-21%</td>
+            <td>Expansion</td>
+            <td class="warn">MED</td>
+            <td>AI-skilled divide hardens. Female LFPR crosses 50%. EV transition completes.</td>
+          </tr>
+          <tr>
+            <td><strong>2033</strong></td>
+            <td>6.5-7.0%</td>
+            <td>$8-9T</td>
+            <td>+35-50L</td>
+            <td>2.4-2.9 Cr</td>
+            <td>~20-23%</td>
+            <td>Mature Growth</td>
+            <td class="warn">ELEV</td>
+            <td>Middle-class career anxiety peak. "Safe" professions disrupted. India possibly #3 GDP.</td>
+          </tr>
+          <tr>
+            <td><strong>2034</strong></td>
+            <td>6.2-6.8%</td>
+            <td>$8.5-9.5T</td>
+            <td>+28-42L</td>
+            <td>2.9-3.5 Cr</td>
+            <td>~21-24%</td>
+            <td>Transition Stress</td>
+            <td class="negative">HIGH</td>
+            <td>Robotics hits physical work. Construction, warehouse, delivery under pressure. Climate shock risk.</td>
+          </tr>
+          <tr style="background:var(--blood-glow);">
+            <td><strong>2035</strong></td>
+            <td>5.8-6.5%</td>
+            <td>$9-10T</td>
+            <td>+25-40L</td>
+            <td>3.5-4.2 Cr</td>
+            <td>~22-26%</td>
+            <td>Structural Shift</td>
+            <td class="negative">CRIT</td>
+            <td><strong>LAST YEAR TO CORRECT. Demographic dividend expires. UBI debate decision year.</strong></td>
+          </tr>
+          <tr>
+            <td><strong>2036</strong></td>
+            <td>6.0-7.0%</td>
+            <td>$9.5-11T</td>
+            <td>+28-48L</td>
+            <td>4.0-4.8 Cr</td>
+            <td>~19-25%</td>
+            <td>New Model Forming</td>
+            <td class="warn">ELEV</td>
+            <td>Care economy major employer. Job definition changed. Portfolio careers norm.</td>
+          </tr>
+          <tr>
+            <td><strong>2037</strong></td>
+            <td>6.5-7.2%</td>
+            <td>$10-12T</td>
+            <td>+35-55L</td>
+            <td>4.8-5.4 Cr</td>
+            <td>~18-24%</td>
+            <td>Adaptation</td>
+            <td class="warn">MED</td>
+            <td>Stabilization or stagnation crystallizes. New generation (AI-native) enters workforce.</td>
+          </tr>
+          <tr>
+            <td><strong>2038</strong></td>
+            <td>6.8-7.5%</td>
+            <td>$11-13T</td>
+            <td>+38-60L</td>
+            <td>5.4-6.2 Cr</td>
+            <td>~17-23%</td>
+            <td>New Growth Model</td>
+            <td class="warn">MED</td>
+            <td>AI-human workflows mature. Infrastructure payoff visible. Automation equilibrium.</td>
+          </tr>
+          <tr>
+            <td><strong>2039</strong></td>
+            <td>6.5-7.5%</td>
+            <td>$11-13T</td>
+            <td>+40-65L</td>
+            <td>5.5-6.5 Cr</td>
+            <td>~16-23%</td>
+            <td>Pre-Verdict</td>
+            <td class="warn">MED</td>
+            <td>Trajectory visible. 2030s cohort enters workforce. They're adapted to chaos as baseline.</td>
+          </tr>
+          <tr style="background:var(--violet-glow);">
+            <td><strong>2040</strong></td>
+            <td>Scenario-Dependent</td>
+            <td>$7-15T</td>
+            <td>Varies</td>
+            <td>5.5-7 Cr</td>
+            <td>15-35%</td>
+            <td>VERDICT DELIVERED</td>
+            <td class="violet">UNC</td>
+            <td><strong>One of three Indias has materialized. Path is locked for next generation.</strong></td>
+          </tr>
+        </table>
+      </div>
+
+      <h3>&#9733; 2040 Employment by Scenario</h3>
+
+      <div class="g3">
+        <div style="background:var(--acid-glow); padding:1.5rem; border-radius:8px; border:1px solid rgba(22,163,74,0.3);">
+          <h4 style="color:var(--acid);">Scenario A Employment 2040</h4>
+          <ul>
+            <li>Total employed: 78-82 Cr</li>
+            <li>Formal/semi-formal: 45%</li>
+            <li>Median monthly income: Rs 38,000-55,000</li>
+            <li>Social security coverage: 42%</li>
+            <li>Real wage growth (2030-2040): +2.5-3% annually</li>
+            <li>Quality of life vs 2024: BETTER for 60%+</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--gold-glow); padding:1.5rem; border-radius:8px; border:1px solid rgba(217,119,6,0.3);">
+          <h4 style="color:var(--gold);">Scenario B Employment 2040</h4>
+          <ul>
+            <li>Total employed: 68-75 Cr</li>
+            <li>Formal/semi-formal: 28%</li>
+            <li>Median monthly income: Rs 22,000-35,000</li>
+            <li>Social security coverage: 25%</li>
+            <li>Real wage growth (2030-2040): +0.5-1% annually</li>
+            <li>Quality of life vs 2024: SAME for 50%, WORSE for 30%, BETTER for 20%</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--blood-glow); padding:1.5rem; border-radius:8px; border:1px solid rgba(220,38,38,0.3);">
+          <h4 style="color:var(--blood);">Scenario C Employment 2040</h4>
+          <ul>
+            <li>Total employed: 62-68 Cr</li>
+            <li>Formal/semi-formal: 18%</li>
+            <li>Median monthly income: Rs 15,000-25,000</li>
+            <li>Social security coverage: 18%</li>
+            <li>Real wage growth (2030-2040): -0.5 to +0.5% annually</li>
+            <li>Quality of life vs 2024: WORSE for 65%+</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>&#9733; The Final Question of the Decade</h3>
+      <p>By 2040, one question will have been answered through 16 years of lived experience: <strong>Can a civilization-scale economy function when machines do most of the work, and if so, how does money circulate to keep demand alive?</strong></p>
+
+      <p>The three scenarios represent three different answers:</p>
+      <ul>
+        <li><strong>Scenario A:</strong> Yes, through AI-augmented employment where humans do higher-value work, supported by education and infrastructure that enables broad participation.</li>
+        <li><strong>Scenario B:</strong> Barely, through a dual economy where the top thrives, the bottom survives on transfers + gig work, and the middle is squeezed. Functional but not thriving.</li>
+        <li><strong>Scenario C:</strong> No, not sustainably. The system holds through government transfers and political management of discontent, but it's a treadmill, not a solution.</li>
+      </ul>
+
+      <div class="callout callout-violet" style="border-left:3px solid var(--violet); background:rgba(139,92,246,0.1);">
+        <strong style="color:var(--text-bright);">THE KAALCHAKRA VERDICT ON 2031-2040:</strong><br><br>
+        This decade is where India either adapts successfully to the AI-automation-climate convergence or becomes permanently locked into a middle-income, high-inequality, low-social-mobility trap. The probability distribution as of Q1 2026 favors <strong>Scenario B (Muddling)</strong> at 52%. This is not catastrophic. India doesn't collapse. It just doesn't fulfill the potential that its 1.4 billion people deserve. The levers to shift toward Scenario A exist: education, infrastructure, manufacturing, green energy, female participation, social security. But these levers require EXECUTION at speed and scale that India has not historically demonstrated. The window to execute is 2024-2035. By 2040, the consequences of execution or non-execution are locked in for the next generation.
+      </div>
+
+      <div class="callout callout-street">
+        &#128172; <strong>In plain terms:</strong> If you're reading this in 2026 and you're under 40 years old, the India you live in in 2040 depends on what happens in the next 9 years. Not what politicians promise. What actually gets built: jobs, skills, infrastructure, safety nets. If you're over 40, your working years were mostly in the old economy. Your children's working years will be ENTIRELY in the new economy. The question is whether the new economy has room for them or whether they'll spend their lives scrambling for income. The answer is being written right now. And it's not being written in Parliament. It's being written in classrooms that teach (or don't teach) AI, in factories that hire (or automate), in cities that build (or don't build) infrastructure, and in families that adapt (or can't afford to adapt). The macro shape of 2040 India is a probability distribution. Your personal 2040 is a choice tree. Choose wisely.
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <p style="text-align:center; color:var(--text-dim); font-size:0.85rem; padding:2rem 0;">
+    <strong style="color:var(--blood);">END OF PART 3</strong><br>
+    The decade after the crisis. The adaptation or stagnation years.<br>
+    Part 4 continues with Section 2: AI Tipping Point Analysis + Section 3: Sector Deep Dives
+  </p>
+</div>
+
+<div class="part-footer">
+  <p>KAALCHAKRA Part 3 of 6 | Section 1: Year-by-Year 2031-2040 (The Adaptation Decade)</p>
+  <p>Sources: World Inequality Report 2026 | Azim Premji University State of Working India 2026 | ILO Future of Work projections | McKinsey AI and Employment reports | RBI long-term growth models | Climate impact studies (IPCC India-specific) | Demographic projections (UN Population Division, MOSPI)</p>
+  <p style="margin-top:0.5rem; color:var(--blood);">DISCLOSURE: 2031-2040 projections carry 25-40% confidence. Scenario-based exploration, not forecasts. The future is probability distribution, not predetermined path.</p>
+</div>
+
+<script>
+function toggle(header) {
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.year-toggle');
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.year-body').forEach(b => { b.classList.remove('open'); b.style.display = 'none'; });
+  document.querySelectorAll('.year-toggle').forEach(a => a.classList.remove('open'));
+  if (!isOpen) {
+    body.classList.add('open');
+    body.style.display = 'block';
+    arrow.classList.add('open');
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const first = document.querySelector('.year-header');
+  if (first) toggle(first);
+});
+</script>
+
+</body>
+</html>
